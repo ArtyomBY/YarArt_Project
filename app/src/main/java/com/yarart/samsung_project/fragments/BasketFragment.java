@@ -1,5 +1,6 @@
 package com.yarart.samsung_project.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,57 +8,18 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yarart.samsung_project.R;
+import com.yarart.samsung_project.classes.Product;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BasketFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class BasketFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public BasketFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment BasketFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static BasketFragment newInstance(String param1, String param2) {
-        BasketFragment fragment = new BasketFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    ListView lv_Basket;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -68,8 +30,46 @@ public class BasketFragment extends Fragment {
 //        tv.setText("Хуй знает что это");
 //        et.setHint("Введите пароль");
 
+        lv_Basket = v.findViewById(R.id.basketList);
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_basket, container, false);
+        return v;
+    }
+
+
+    public void pay_for_the_shopping_cart(View view) {
+
+    }
+
+
+    private class BasketAdapter extends ArrayAdapter {
+
+        private LayoutInflater inflater;
+        private int layout;
+        private Product[] basketList;
+
+        public BasketAdapter(Context context, int resource, Product[] basketList) {
+            super(context, resource,  basketList);
+            this.layout = resource;
+            this.basketList = basketList;
+            this.inflater = LayoutInflater.from(context);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            View view = inflater.inflate(this.layout, parent, false);
+
+            ImageView dishImage = view.findViewById(R.id.imageView);
+            TextView dishName = view.findViewById(R.id.textView);
+            TextView dishPrice = view.findViewById(R.id.textView2);
+
+            Product product = basketList[position];
+
+            dishImage.setImageResource(product.getDishResource());
+            dishName.setText(product.getDish());
+            dishPrice.setText(product.getPrice());
+
+            return view;
+        }
     }
 }

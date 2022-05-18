@@ -4,6 +4,18 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_basket.xml" value="0.17831813576494426" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_login.xml" value="0.33" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_order.xml" value="0.358695652173913" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_order_list.xml" value="0.358695652173913" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_product.xml" value="0.358695652173913" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_product_catalog.xml" value="0.17831813576494426" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_registration_buyer.xml" value="0.33" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_registration_user.xml" value="0.17831813576494426" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_basket.xml" value="0.358695652173913" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_catalog.xml" value="0.358695652173913" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_product.xml" value="0.358695652173913" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/layout_item_catalog.xml" value="0.358695652173913" />
       </map>
     </option>
   </component>

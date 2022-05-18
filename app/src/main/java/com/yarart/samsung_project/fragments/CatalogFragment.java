@@ -1,5 +1,6 @@
 package com.yarart.samsung_project.fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -7,65 +8,30 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.yarart.samsung_project.ProductCatalogAdapter;
+import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Product;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CatalogFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class CatalogFragment extends Fragment {
 
     ListView lv_catalog;
     Button goToBasketButton;
     BottomNavigationView bottomNavigationView;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public CatalogFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CatalogFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CatalogFragment newInstance(String param1, String param2) {
-        CatalogFragment fragment = new CatalogFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-
-        }
-    }
+    View v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -98,4 +64,70 @@ public class CatalogFragment extends Fragment {
 //        return (List<Product>) catalog;
         return arr;
     }
+
+    public void put_in_basket(View view) {
+        //Basket basket = new Basket()
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.replaceFragment(new BasketFragment());
+//        Intent i = new Intent(view.getContext(), BasketActivity.class);
+//        i.putExtra("dishPrice", a);
+//        startActivity(i);
+        mainActivity.bottomNavigationView.getMenu().findItem(R.id.basket_menu).setChecked(true);
+        Toast.makeText(getContext(), "Товар добавлен в корзину!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void look_at_product(View view) {
+        TextView tv = v.findViewById(R.id.textView);
+        String str = tv.getText().toString();
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.replaceFragment(new ProductFragment());
+//        Intent i = new Intent(MainActivity_ProductCatalog.this, ProductActivity.class);
+//        i.putExtra("nd", str);
+//        startActivity(i);
+    }
+
+    public void goToBasket(View view) {
+        //new Basket()
+    }
+
+
+
+
+
+    private class ProductCatalogAdapter extends ArrayAdapter<Product> {
+
+        public ProductCatalogAdapter(Context context, Product[] productList) {
+            super(context, R.layout.layout_item_catalog, productList);
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+
+            final Product product = getItem(position);
+
+            if (convertView == null) {
+                convertView = LayoutInflater.from(getContext()).inflate(R.layout.layout_item_catalog, null);
+            }
+
+            ((TextView) convertView.findViewById(R.id.textView)).setText(product.getDish());
+            ((TextView) convertView.findViewById(R.id.textView2)).setText(Integer.toString(product.getPrice()));
+            if (product.getDish() == "Устрица")
+                ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.ustrica);
+            if (product.getDish() == "Питца")
+                ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.pizza);
+            if (product.getDish() == "Пирог с картошкой")
+                ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.kartoshka);
+
+//        CheckBox ch = (CheckBox) convertView.findViewById(R.id.checkbox);
+//        ch.setChecked(product.like);
+//        ch.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                product.like = ((CheckBox) v).isChecked();
+//            }
+//        });
+            return convertView;
+        }
+    }
+
 }

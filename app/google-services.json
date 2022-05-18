@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "207068555670",
+    "firebase_url": "https://userprofile-403ed-default-rtdb.firebaseio.com",
+    "project_id": "userprofile-403ed",
+    "storage_bucket": "userprofile-403ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207068555670:android:9b2d5018724379c41c55b7",
+        "android_client_info": {
+          "package_name": "com.maxart.testdatabaseapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207068555670-cejflh4cm3260hcqj9ur0ee8cep2cq7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFCapKXIlXUdUGfA1TuyWgBiTBniHmr-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207068555670-cejflh4cm3260hcqj9ur0ee8cep2cq7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207068555670:android:6c5582bf546345a71c55b7",
+        "android_client_info": {
+          "package_name": "com.yarart.samsung_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207068555670-cejflh4cm3260hcqj9ur0ee8cep2cq7d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFCapKXIlXUdUGfA1TuyWgBiTBniHmr-o"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207068555670-cejflh4cm3260hcqj9ur0ee8cep2cq7d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

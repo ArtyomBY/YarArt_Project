@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".RegistrationActivity">
 
     <TextView
         android:id="@+id/textView6"
@@ -15,12 +16,12 @@
         tools:layout_editor_absoluteY="29dp" />
 
     <EditText
-        android:id="@+id/editTextPhone"
+        android:id="@+id/editTextEmail"
         android:layout_width="220dp"
         android:layout_height="47dp"
         android:ems="10"
-        android:hint="Введите номер телефона"
-        android:inputType="phone"
+        android:hint="Введите ваш email"
+        android:inputType="textEmailAddress"
         tools:layout_editor_absoluteX="95dp"
         tools:layout_editor_absoluteY="137dp" />
 
