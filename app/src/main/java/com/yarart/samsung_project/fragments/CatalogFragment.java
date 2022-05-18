@@ -56,9 +56,8 @@ public class CatalogFragment extends Fragment {
         lv_catalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 look_at_product(view);
-
+                ProductFragment.getInfoAboutProduct(products.get(adapterView.getPositionForView(view)));
             }
         });
 
