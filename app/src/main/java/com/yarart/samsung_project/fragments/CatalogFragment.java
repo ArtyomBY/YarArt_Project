@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -44,6 +45,15 @@ public class CatalogFragment extends Fragment {
         ProductCatalogAdapter adapter = new ProductCatalogAdapter(v.getContext(), makeProduct());
         lv_catalog.setAdapter(adapter);
 
+        lv_catalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                look_at_product(view);
+
+            }
+        });
+
         return v;
     }
 
@@ -65,19 +75,8 @@ public class CatalogFragment extends Fragment {
         return arr;
     }
 
-    public void put_in_basket(View view) {
-        //Basket basket = new Basket()
-        MainActivity mainActivity = (MainActivity) requireActivity();
-        mainActivity.replaceFragment(new BasketFragment());
-//        Intent i = new Intent(view.getContext(), BasketActivity.class);
-//        i.putExtra("dishPrice", a);
-//        startActivity(i);
-        mainActivity.bottomNavigationView.getMenu().findItem(R.id.basket_menu).setChecked(true);
-        Toast.makeText(getContext(), "Товар добавлен в корзину!", Toast.LENGTH_SHORT).show();
-    }
-
     public void look_at_product(View view) {
-        TextView tv = v.findViewById(R.id.textView);
+        TextView tv = view.findViewById(R.id.textView);
         String str = tv.getText().toString();
         MainActivity mainActivity = (MainActivity) requireActivity();
         mainActivity.replaceFragment(new ProductFragment());
@@ -86,9 +85,6 @@ public class CatalogFragment extends Fragment {
 //        startActivity(i);
     }
 
-    public void goToBasket(View view) {
-        //new Basket()
-    }
 
 
 
