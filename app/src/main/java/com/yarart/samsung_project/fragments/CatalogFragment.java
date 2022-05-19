@@ -21,12 +21,15 @@ import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Product;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+
 
 public class CatalogFragment extends Fragment {
 
     ListView lv_catalog;
     Button goToBasketButton;
     BottomNavigationView bottomNavigationView;
+    public ArrayList<Product> products = new ArrayList<>();
 
     public CatalogFragment() {
         // Required empty public constructor
@@ -39,41 +42,45 @@ public class CatalogFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
+        products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
+        products.add(new Product("Питца", 35, "Шедевр кулинарии", true, R.drawable.pizza));
+        products.add(new Product("Пирог с картошкой", 16, "Пирожок с картошкой", true, R.drawable.kartoshka));
+
         View v = inflater.inflate(R.layout.fragment_catalog, container, false);
 
         lv_catalog = v.findViewById(R.id.product_list);
-        ProductCatalogAdapter adapter = new ProductCatalogAdapter(v.getContext(), makeProduct());
+        Product[] productArray = products.toArray(new Product[products.size()]);
+        ProductCatalogAdapter adapter = new ProductCatalogAdapter(v.getContext(), products.toArray(productArray));
         lv_catalog.setAdapter(adapter);
 
         lv_catalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
                 look_at_product(view);
-
+                ProductFragment.getInfoAboutProduct(products.get(adapterView.getPositionForView(view)));
             }
         });
 
         return v;
     }
 
-    public Product[] makeProduct() {
-        Product[] arr = new Product[3];
-
-        String[] dishes = {"Устрица", "Питца", "Пирог с картошкой"};
-        int[] prices = {10, 35, 16};
-
-        for (int i = 0; i < arr.length; i++) {
-            Product product = new Product();
-            product.setDish(dishes[i]);
-            product.setPrice(prices[i]);
-            arr[i] = product;
-        }
-
-//        Catalog catalog = new Catalog(arr);
-//        return (List<Product>) catalog;
-        return arr;
-    }
+//    public Product[] makeProduct() {
+//        Product[] arr = new Product[3];
+//
+//        String[] dishes = {"Устрица", "Питца", "Пирог с картошкой"};
+//        int[] prices = {10, 35, 16};
+//
+//        for (int i = 0; i < arr.length; i++) {
+//            Product product = new Product();
+//            product.setDish(dishes[i]);
+//            product.setPrice(prices[i]);
+//            arr[i] = product;
+//        }
+//
+////        Catalog catalog = new Catalog(arr);
+////        return (List<Product>) catalog;
+//        return arr;
+//    }
 
     public void look_at_product(View view) {
         TextView tv = view.findViewById(R.id.textView);
