@@ -26,6 +26,14 @@ public class MainActivity extends AppCompatActivity {
         init();
 
 
+
+    }
+
+
+    public void init() {
+        //Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
+
+
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.catatlog_menu);
         replaceFragment(new CatalogFragment());
@@ -53,11 +61,6 @@ public class MainActivity extends AppCompatActivity {
 
             return true;
         });
-    }
-
-
-    public void init() {
-        Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
     }
 
 

@@ -14,18 +14,26 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.yarart.samsung_project.classes.UserProfile;
 
 public class LoginActivity extends AppCompatActivity {
 
     EditText editTextEmail, editTextPassword;
     private FirebaseAuth myAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        init();
+
+    }
+
+    private void init() {
         editTextEmail = findViewById(R.id.editTextEmail);
         editTextPassword = findViewById(R.id.editTextTextPassword);
         myAuth = FirebaseAuth.getInstance();
@@ -33,7 +41,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
-    public void onClickRegistration(View view) {
+    public void onClickRegistrationForm(View view) {
 
         Intent i = new Intent(this, RegistrationActivity.class);
         startActivity(i);
