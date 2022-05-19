@@ -18,11 +18,17 @@ import com.yarart.samsung_project.classes.Product;
 
 public class ProductFragment extends Fragment {
 
-    static TextView tvNameDish;
-    static ImageView productImage;
-    static TextView tvProductPrice;
-    static TextView tvProductDescription;
+    TextView tvNameDish;
+    ImageView productImage;
+    TextView tvProductPrice;
+    TextView tvProductDescription;
     Button btn_payment;
+    Product product;
+
+    public ProductFragment(Product product) {
+        this.product = product;
+    }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -31,7 +37,15 @@ public class ProductFragment extends Fragment {
 
         tvNameDish = v.findViewById(R.id.tvNameDish);
         productImage = v.findViewById(R.id.productImage);
+        tvProductPrice = v.findViewById(R.id.productPrice);
         tvProductDescription = v.findViewById(R.id.productDescription);
+
+        tvNameDish.setText(product.getDish());
+        String productPrice = Integer.toString(product.getPrice());
+        tvProductPrice.setText(productPrice);
+        tvProductDescription.setText(product.getDescription());
+        productImage.setImageResource(product.getDishResource());
+
         btn_payment = v.findViewById(R.id.btn_payment);
         btn_payment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,10 +68,4 @@ public class ProductFragment extends Fragment {
         Toast.makeText(getContext(), "Товар добавлен в корзину!", Toast.LENGTH_SHORT).show();
     }
 
-    public static void getInfoAboutProduct(Product product) {
-        tvNameDish.setText(product.getDish());
-        tvProductPrice.setText(product.getPrice());
-        tvProductDescription.setText(product.getDescription());
-        productImage.setImageResource(product.getDishResource());
-    }
 }

@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,9 @@ public class CatalogFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
+        Product newProduct = new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica);
+        products.add(newProduct);
+//        products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
         products.add(new Product("Питца", 35, "Шедевр кулинарии", true, R.drawable.pizza));
         products.add(new Product("Пирог с картошкой", 16, "Пирожок с картошкой", true, R.drawable.kartoshka));
 
@@ -56,8 +59,7 @@ public class CatalogFragment extends Fragment {
         lv_catalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                look_at_product(view);
-                ProductFragment.getInfoAboutProduct(products.get(adapterView.getPositionForView(view)));
+                look_at_product(view, products.get(adapterView.getPositionForView(view)));
             }
         });
 
@@ -82,11 +84,11 @@ public class CatalogFragment extends Fragment {
 //        return arr;
 //    }
 
-    public void look_at_product(View view) {
+    public void look_at_product(View view, Product product) {
         TextView tv = view.findViewById(R.id.textView);
         String str = tv.getText().toString();
         MainActivity mainActivity = (MainActivity) requireActivity();
-        mainActivity.replaceFragment(new ProductFragment());
+        mainActivity.replaceFragment(new ProductFragment(product));
 //        Intent i = new Intent(MainActivity_ProductCatalog.this, ProductActivity.class);
 //        i.putExtra("nd", str);
 //        startActivity(i);
