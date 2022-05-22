@@ -2,12 +2,14 @@ package com.yarart.samsung_project.classes;
 
 import android.widget.ImageView;
 
-public class UserProfile {
+import java.io.Serializable;
+
+public class UserProfile implements Serializable {
 
     //ImageView profile_picture;
     private String id;
 //    private String user_id;
-    private static long inc = 0;
+//    private static long inc = 0;
     private String firstName;
     private String secondName;
     private String email;

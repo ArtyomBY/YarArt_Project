@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.yarart.samsung_project.classes.Buyer;
+import com.yarart.samsung_project.classes.UserProfile;
 import com.yarart.samsung_project.fragments.BasketFragment;
 import com.yarart.samsung_project.fragments.CatalogFragment;
 import com.yarart.samsung_project.fragments.ProfileFragment;
@@ -33,6 +34,9 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         //Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
 
+        Bundle args = getIntent().getExtras();
+        UserProfile user = (UserProfile) args.get("User");
+
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
         bottomNavigationView.setSelectedItemId(R.id.catatlog_menu);
@@ -47,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
 //                    startActivity(intent);
                     break;
                 case R.id.profil_menu:
-                    replaceFragment(new ProfileFragment());
+                    replaceFragment(new ProfileFragment(user));
                     bottomNavigationView.getMenu().findItem(R.id.profil_menu).setChecked(true);
 //                    Intent intent2 = new Intent(this, UserProfileActivity.class);
 //                    startActivity(intent2);

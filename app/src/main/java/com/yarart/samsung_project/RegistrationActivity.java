@@ -15,9 +15,14 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseError;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.yarart.samsung_project.classes.UserProfile;
+
+import java.util.HashMap;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -46,6 +51,7 @@ public class RegistrationActivity extends AppCompatActivity {
         checkBoxBuyer = findViewById(R.id.checkBoxBuyer);
 
         myAuth = FirebaseAuth.getInstance();
+        myDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
     }
 
@@ -57,12 +63,12 @@ public class RegistrationActivity extends AppCompatActivity {
 
             if (checkBoxBuyer.isChecked()){
                 PROFILE_TYPE = "Buyer";
-                myDatabase = FirebaseDatabase.getInstance().getReference(PROFILE_TYPE);
+//                myDatabase = FirebaseDatabase.getInstance().getReference("Users").child(PROFILE_TYPE);
             } else if (checkBoxAdmin.isChecked()) {
                 PROFILE_TYPE = "Admin";
-                myDatabase = FirebaseDatabase.getInstance().getReference(PROFILE_TYPE);
+//                myDatabase = FirebaseDatabase.getInstance().getReference("Users").child(PROFILE_TYPE);
             } else {
-                Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "ErrorCheck", Toast.LENGTH_SHORT).show();
             }
 
             myAuth.createUserWithEmailAndPassword(editTextEmail.getText().toString(), editTextPassword.getText().toString())
@@ -71,18 +77,41 @@ public class RegistrationActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
 
-                                String id = myDatabase.getKey();
-                                id = myDatabase.getKey();
+                                HashMap<String, UserProfile> usersMap = new HashMap<>();
+                                String uid = myAuth.getCurrentUser().getUid();
+
+                                String id = uid;
                                 String firstName = editTextFirstName.getText().toString();
                                 String secondName = editTextSecondName.getText().toString();
                                 String email = editTextEmail.getText().toString();
                                 UserProfile newUser = new UserProfile(id, firstName, secondName, email, PROFILE_TYPE);
-                                myDatabase.push().setValue(newUser);
 
+                                usersMap.put(uid, newUser);
+                                myDatabase.push().setValue(usersMap);
+
+                                final HashMap<String, UserProfile>[] hashMap = new HashMap[]{new HashMap()};
+                                myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        if (snapshot.exists()) {
+                                            hashMap[0] = (HashMap<String, UserProfile>) snapshot.getValue();
+                                            System.out.println(hashMap[0].get("-N2c1xB4mUIpLDX_FV7u").getEmail());
+                                        } else
+                                            Toast.makeText(RegistrationActivity.this, "Ошибка чтения данных", Toast.LENGTH_SHORT).show();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                    }
+                                });
+
+                                Toast.makeText(RegistrationActivity.this, "Вы успешно создали аккаунт", Toast.LENGTH_SHORT).show();
 
                                 Intent i = new Intent(RegistrationActivity.this, LoginActivity.class);
-                                Toast.makeText(RegistrationActivity.this, "Вы успешно создали аккаунт", Toast.LENGTH_SHORT).show();
+//                                i.putExtra("User", newUser);
                                 startActivity(i);
+
                             } else
                                 Toast.makeText(RegistrationActivity.this, "Кажется вы допустили ошибку", Toast.LENGTH_SHORT).show();
                         }

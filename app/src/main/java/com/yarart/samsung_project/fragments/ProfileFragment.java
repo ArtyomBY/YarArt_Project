@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.yarart.samsung_project.R;
+import com.yarart.samsung_project.classes.UserProfile;
 
 import java.io.IOException;
 
@@ -29,7 +30,13 @@ public class ProfileFragment extends Fragment {
 
     View v;
     ImageView profileImage;
-    TextView profile_name, profile_type, profile_class, profile_school, profile_region;
+    TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region;
+    UserProfile userProfile;
+
+
+    public ProfileFragment(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
 
 
     @Override
@@ -48,8 +55,15 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        profile_id = v.findViewById(R.id.tv_user_id);
+        profile_id.setText(userProfile.getId());
+
         profile_name = v.findViewById(R.id.profile_name);
+        profile_name.setText(userProfile.getFirstName() + " " + userProfile.getSecondName());
+
         profile_type = v.findViewById(R.id.profile_type);
+        profile_type.setText(userProfile.getUser_status());
+
         profile_class = v.findViewById(R.id.profile_class);
         profile_school = v.findViewById(R.id.profile_school);
         profile_region = v.findViewById(R.id.profile_region);
