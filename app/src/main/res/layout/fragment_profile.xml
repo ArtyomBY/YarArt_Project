@@ -131,14 +131,23 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+<!--        <ImageButton-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginStart="10dp"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:src="@drawable/exit_image"-->
+<!--            android:visibility="visible" />-->
+
         <ImageButton
+            android:id="@+id/btn_exitFromAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_marginStart="10dp"
-            android:onClick="onClickExitFromAccount"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentRight="true"
             android:src="@drawable/exit_image"
-            android:visibility="visible" />
+            android:background="@color/green_app"/>
 
 
     </RelativeLayout>

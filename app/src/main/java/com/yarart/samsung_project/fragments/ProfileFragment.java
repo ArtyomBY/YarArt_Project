@@ -15,9 +15,12 @@ import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.yarart.samsung_project.LoginActivity;
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.R;
@@ -33,6 +36,7 @@ public class ProfileFragment extends Fragment {
     View v;
     ImageView profileImage;
     TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region;
+    ImageButton btn_exit;
     UserProfile userProfile;
 
 
@@ -58,6 +62,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+
         profile_id = v.findViewById(R.id.tv_user_id);
 //        profile_id.setText(userProfile.getId());
 
@@ -72,10 +77,22 @@ public class ProfileFragment extends Fragment {
         profile_region = v.findViewById(R.id.profile_region);
 
         profileImage.setImageResource(R.drawable.typical_user);
+
+        btn_exit = v.findViewById(R.id.btn_exitFromAccount);
+        btn_exit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickExitFromAccount(view);
+            }
+        });
         return v;
     }
 
     public void onClickExitFromAccount(View view) {
+        FirebaseAuth.getInstance().signOut();
+//        FirebaseUser cUser = mAuth.getCurrentUser();
+//        cUser.sign
+
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);
     }
