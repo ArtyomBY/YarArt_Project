@@ -22,7 +22,7 @@ public class ProductFragment extends Fragment {
     ImageView productImage;
     TextView tvProductPrice;
     TextView tvProductDescription;
-    Button btn_payment;
+    Button buttonPutInTheBasket;
     Product product;
 
     public ProductFragment(Product product) {
@@ -46,19 +46,19 @@ public class ProductFragment extends Fragment {
         tvProductDescription.setText(product.getDescription());
         productImage.setImageResource(product.getDishResource());
 
-        btn_payment = v.findViewById(R.id.btn_payment);
-        btn_payment.setOnClickListener(new View.OnClickListener() {
+        v.findViewById(R.id.buttonPutInTheBasket).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 put_in_basket(view);
             }
         });
-        // Inflate the layout for this fragment
         return v;
     }
 
     public void put_in_basket(View view) {
         //Basket basket = new Basket()
+        MainActivity.total_price += product.getPrice();
+        BasketFragment.basketList.add(product);
         MainActivity mainActivity = (MainActivity) requireActivity();
         mainActivity.replaceFragment(new BasketFragment());
 //        Intent i = new Intent(view.getContext(), BasketActivity.class);

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -53,6 +54,7 @@ public class RegistrationActivity extends AppCompatActivity {
         myAuth = FirebaseAuth.getInstance();
         myDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
+
     }
 
     public void onClickUserRegistration(View view) {
@@ -89,22 +91,22 @@ public class RegistrationActivity extends AppCompatActivity {
                                 usersMap.put(uid, newUser);
                                 myDatabase.push().setValue(usersMap);
 
-                                final HashMap<String, UserProfile>[] hashMap = new HashMap[]{new HashMap()};
-                                myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        if (snapshot.exists()) {
-                                            hashMap[0] = (HashMap<String, UserProfile>) snapshot.getValue();
-                                            System.out.println(hashMap[0].get("-N2c1xB4mUIpLDX_FV7u").getEmail());
-                                        } else
-                                            Toast.makeText(RegistrationActivity.this, "Ошибка чтения данных", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
+//                                final HashMap<String, UserProfile>[] hashMap = new HashMap[]{new HashMap()};
+//                                myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                        if (snapshot.exists()) {
+//                                            hashMap[0] = (HashMap<String, UserProfile>) snapshot.getValue();
+//                                            System.out.println(hashMap[0].get("-N2c1xB4mUIpLDX_FV7u").getEmail());
+//                                        } else
+//                                            Toast.makeText(RegistrationActivity.this, "Ошибка чтения данных", Toast.LENGTH_SHORT).show();
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                    }
+//                                });
 
                                 Toast.makeText(RegistrationActivity.this, "Вы успешно создали аккаунт", Toast.LENGTH_SHORT).show();
 

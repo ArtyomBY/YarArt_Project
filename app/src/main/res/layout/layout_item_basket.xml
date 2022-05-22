@@ -55,11 +55,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_below="@id/priceLeyout">
 
-                <ImageButton
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/lupa"
-                    android:onClick="look_at_product"/>
+
                 <ImageButton
                     android:layout_width="30dp"
                     android:layout_height="30dp"

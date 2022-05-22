@@ -16,6 +16,7 @@ import com.yarart.samsung_project.fragments.CatalogFragment;
 import com.yarart.samsung_project.fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
+    static public int total_price = 0;
 
     public BottomNavigationView bottomNavigationView;
 
@@ -34,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     public void init() {
         //Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
 
-        Bundle args = getIntent().getExtras();
-        UserProfile user = (UserProfile) args.get("User");
+//        Bundle args = getIntent().getExtras();
+//        UserProfile user = (UserProfile) args.get("User");
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 //                    startActivity(intent);
                     break;
                 case R.id.profil_menu:
-                    replaceFragment(new ProfileFragment(user));
+                    replaceFragment(new ProfileFragment());
                     bottomNavigationView.getMenu().findItem(R.id.profil_menu).setChecked(true);
 //                    Intent intent2 = new Intent(this, UserProfileActivity.class);
 //                    startActivity(intent2);

@@ -58,21 +58,21 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//        FirebaseUser cUser = myAuth.getCurrentUser();
-//        if (cUser != null) {
-//            Toast.makeText(this, "Вы вошли под: " + cUser.getEmail(), Toast.LENGTH_SHORT).show();
-//
-//            Intent i = new Intent(LoginActivity.this, MainActivity.class);
-//            i.putExtra("User", user);
-//            startActivity(i);
-//
-//        } else{
-////            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-//        }
-//    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser cUser = myAuth.getCurrentUser();
+        if (cUser != null) {
+            Toast.makeText(this, "Вы вошли под: " + cUser.getEmail(), Toast.LENGTH_SHORT).show();
+
+            Intent i = new Intent(LoginActivity.this, MainActivity.class);
+            i.putExtra("User", user);
+            startActivity(i);
+
+        } else{
+//            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void onClickLogin(View view) {
         if (editTextEmail.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty()) {
@@ -85,30 +85,30 @@ public class LoginActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
 
 
-                                myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        if(snapshot.exists()){
-                                            HashMap<String, Object> userMap = (HashMap<String, Object>) snapshot.getValue();
-
-                                            user = (UserProfile) userMap.get("1.programx.1@mail.ru");
-//                                        user = (UserProfile) snapshot.getValue();
-                                        } else
-                                            Toast.makeText(LoginActivity.this, "", Toast.LENGTH_SHORT).show();
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
+//                                myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
+//                                    @Override
+//                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                                        if(snapshot.exists()){
+//                                            HashMap<String, Object> userMap = (HashMap<String, Object>) snapshot.getValue();
+//
+//                                            user = (UserProfile) userMap.get("1.programx.1@mail.ru");
+////                                        user = (UserProfile) snapshot.getValue();
+//                                        } else
+//                                            Toast.makeText(LoginActivity.this, "", Toast.LENGTH_SHORT).show();
+//                                    }
+//
+//                                    @Override
+//                                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                                    }
+//                                });
 
 //                                    Bundle args = getIntent().getExtras();
 //                                    UserProfile newUser = (UserProfile) args.get("User");
 
 
                                 Intent i = new Intent(LoginActivity.this, MainActivity.class);
-                                i.putExtra("User", user);
+//                                i.putExtra("User", user);
                                 startActivity(i);
 
                             } else{

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -29,6 +30,7 @@ public class CatalogFragment extends Fragment {
 
     ListView lv_catalog;
     Button goToBasketButton;
+    Button deleteFromBasket;
     BottomNavigationView bottomNavigationView;
     public ArrayList<Product> products = new ArrayList<>();
 
@@ -43,15 +45,14 @@ public class CatalogFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        Product newProduct = new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica);
-        products.add(newProduct);
-//        products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
+        products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
         products.add(new Product("Питца", 35, "Шедевр кулинарии", true, R.drawable.pizza));
         products.add(new Product("Пирог с картошкой", 16, "Пирожок с картошкой", true, R.drawable.kartoshka));
 
         View v = inflater.inflate(R.layout.fragment_catalog, container, false);
 
         lv_catalog = v.findViewById(R.id.product_list);
+        deleteFromBasket = v.findViewById(R.id.buttonDeleteFromBasket);
         Product[] productArray = products.toArray(new Product[products.size()]);
         ProductCatalogAdapter adapter = new ProductCatalogAdapter(v.getContext(), products.toArray(productArray));
         lv_catalog.setAdapter(adapter);
@@ -66,28 +67,13 @@ public class CatalogFragment extends Fragment {
         return v;
     }
 
-//    public Product[] makeProduct() {
-//        Product[] arr = new Product[3];
-//
-//        String[] dishes = {"Устрица", "Питца", "Пирог с картошкой"};
-//        int[] prices = {10, 35, 16};
-//
-//        for (int i = 0; i < arr.length; i++) {
-//            Product product = new Product();
-//            product.setDish(dishes[i]);
-//            product.setPrice(prices[i]);
-//            arr[i] = product;
-//        }
-//
-////        Catalog catalog = new Catalog(arr);
-////        return (List<Product>) catalog;
-//        return arr;
-//    }
+
 
     public void look_at_product(View view, Product product) {
         TextView tv = view.findViewById(R.id.textView);
         String str = tv.getText().toString();
         MainActivity mainActivity = (MainActivity) requireActivity();
+//        deleteFromBasket.setVisibility(View.GONE);
         mainActivity.replaceFragment(new ProductFragment(product));
 //        Intent i = new Intent(MainActivity_ProductCatalog.this, ProductActivity.class);
 //        i.putExtra("nd", str);

@@ -53,11 +53,17 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/btn_payment"
+            android:id="@+id/buttonPutInTheBasket"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Положить в корзину"
-            android:onClick="put_in_basket"
+            android:backgroundTint="@color/green_app"/>
+
+        <Button
+            android:id="@+id/buttonDeleteFromBasket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Удалить из корзины"
             android:backgroundTint="@color/green_app"/>
 
         <TextView

@@ -7,9 +7,9 @@ public class Basket {
     private double total_price_basket;
     private boolean basket_status;
 
-    public Basket(List<Product> basketList, double total_price_basket){
+    public Basket(List<Product> basketList){
         this.productList_forPayment = basketList;
-        this.total_price_basket = total_price_basket;
+//        this.total_price_basket = total_price_basket;
         basket_status = false;
     }
 

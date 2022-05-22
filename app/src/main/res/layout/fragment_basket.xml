@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,21 +8,22 @@
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".BasketActivity"
-        android:orientation="vertical">
+        android:backgroundTint="#050505"
+        android:orientation="vertical"
+        tools:context=".BasketActivity">
 
         <LinearLayout
+            android:id="@+id/linearLayout_basketDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:orientation="horizontal"
-            android:id="@+id/linearLayout_basketDescription"
-            tools:ignore="MissingConstraints">
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
 
             <TextView
@@ -30,20 +32,22 @@
                 android:layout_gravity="left"
                 android:text="Итоговая цена: "
                 android:textSize="35dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/tvTotalPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="xxx"
-                android:textSize="35dp"
-                android:textColor="@color/color_price"
-                android:id="@+id/tvTotalPrice"/>
+                android:textColor="#030104"
+                android:textSize="35dp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" ₽"
-                android:textSize="35dp"
-                android:textColor="@color/color_price"/>
+                android:textColor="@color/color_price"
+                android:textSize="35dp" />
 
 
         </LinearLayout>
@@ -51,34 +55,29 @@
         <ListView
             android:id="@+id/basketList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout_basketDescription"
-            app:layout_constraintBottom_toTopOf="@id/btn_payment"/>
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_payment"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_basketDescription" />
 
         <Button
+            android:id="@+id/btn_payment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_payment"
+            android:backgroundTint="@color/green_app"
             android:onClick="pay_for_the_shopping_cart"
             android:text="Оплатить корзину"
-            app:layout_constraintBottom_toBottomOf="parent"
 
-            android:backgroundTint="@color/green_app" />
-<!--            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"-->
-
+            app:layout_constraintBottom_toBottomOf="parent" />
+        <!--            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"-->
 
 
-
-
-
-
-<!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
-<!--            android:background="#BAFF97"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="50dp"-->
-<!--            app:layout_constraintBottom_toBottomOf="parent"-->
-<!--            android:id="@+id/bottomNavigationView"-->
-<!--            app:menu="@menu/bottom_navigation_view"/>-->
+        <!--        <com.google.android.material.bottomnavigation.BottomNavigationView-->
+        <!--            android:background="#BAFF97"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="50dp"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            android:id="@+id/bottomNavigationView"-->
+        <!--            app:menu="@menu/bottom_navigation_view"/>-->
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
