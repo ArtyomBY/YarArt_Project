@@ -17,6 +17,7 @@ import com.yarart.samsung_project.fragments.ProfileFragment;
 
 public class MainActivity extends AppCompatActivity {
     static public int total_price = 0;
+    static public int position = 0;
 
     public BottomNavigationView bottomNavigationView;
 

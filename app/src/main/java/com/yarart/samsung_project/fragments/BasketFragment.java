@@ -30,6 +30,7 @@ public class BasketFragment extends Fragment {
     Product product;
     Button deleteFromBasket;
     static ArrayList<Product> basketList = new ArrayList<>();
+    String total_price_str = Integer.toString(MainActivity.total_price);
     TextView tvTotalPrice;
 
     public BasketFragment(Product product) {
@@ -48,6 +49,7 @@ public class BasketFragment extends Fragment {
 //        et.setHint("Введите пароль");
         lv_Basket = v.findViewById(R.id.basketList);
         tvTotalPrice = v.findViewById(R.id.tvTotalPrice);
+        tvTotalPrice.setText(total_price_str);
         deleteFromBasket = v.findViewById(R.id.buttonDeleteFromBasket);
         Product[] products = basketList.toArray(new Product[basketList.size()]);
         ProductBasketAdapter adapter = new ProductBasketAdapter(getContext(), basketList.toArray(products));
@@ -55,10 +57,10 @@ public class BasketFragment extends Fragment {
         lv_Basket.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                MainActivity.position =  adapterView.getPositionForView(view);
                 look_at_product(view, basketList.get(adapterView.getPositionForView(view)));
                 adapter.notifyDataSetChanged();
 
-                String total_price_str = Integer.toString(MainActivity.total_price);
                 tvTotalPrice.setText(total_price_str);
 
             }

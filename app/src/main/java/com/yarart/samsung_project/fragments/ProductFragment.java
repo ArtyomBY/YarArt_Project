@@ -22,7 +22,8 @@ public class ProductFragment extends Fragment {
     ImageView productImage;
     TextView tvProductPrice;
     TextView tvProductDescription;
-    Button buttonPutInTheBasket;
+    Button buttonPutInTheBasket, buttonDeleteFromBasket ;
+    MainActivity mainActivity;
     Product product;
 
     public ProductFragment(Product product) {
@@ -36,9 +37,19 @@ public class ProductFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_product, container, false);
 
         tvNameDish = v.findViewById(R.id.tvNameDish);
+        mainActivity = (MainActivity) requireActivity();
         productImage = v.findViewById(R.id.productImage);
         tvProductPrice = v.findViewById(R.id.productPrice);
         tvProductDescription = v.findViewById(R.id.productDescription);
+        buttonDeleteFromBasket = v.findViewById(R.id.buttonDeleteFromBasket);
+        if (BasketFragment.basketList.size()==0) {buttonDeleteFromBasket.setVisibility(View.GONE);}
+        buttonDeleteFromBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                delete_from_basket(view, product);
+            }
+        });
+
 
         tvNameDish.setText(product.getDish());
         String productPrice = Integer.toString(product.getPrice());
@@ -59,13 +70,23 @@ public class ProductFragment extends Fragment {
         //Basket basket = new Basket()
         MainActivity.total_price += product.getPrice();
         BasketFragment.basketList.add(product);
-        MainActivity mainActivity = (MainActivity) requireActivity();
         mainActivity.replaceFragment(new BasketFragment());
 //        Intent i = new Intent(view.getContext(), BasketActivity.class);
 //        i.putExtra("dishPrice", a);
 //        startActivity(i);
         mainActivity.bottomNavigationView.getMenu().findItem(R.id.basket_menu).setChecked(true);
         Toast.makeText(getContext(), "Товар добавлен в корзину!", Toast.LENGTH_SHORT).show();
+    }
+
+    public void delete_from_basket(View view, Product product) {
+
+            if (BasketFragment.basketList.get(MainActivity.position).getDish().equals(product.getDish())) {
+
+                MainActivity.total_price -= product.getPrice();
+                BasketFragment.basketList.remove(BasketFragment.basketList.remove(BasketFragment.basketList.get(MainActivity.position)));
+                mainActivity.replaceFragment(new BasketFragment());
+            }
+            else Toast.makeText(getContext(), "Данного продукта нет в корзине", Toast.LENGTH_SHORT).show();
     }
 
 }
