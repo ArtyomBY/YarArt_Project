@@ -15,6 +15,10 @@ public class UserProfile implements Serializable {
     private String email;
     private String user_status;
 
+    public UserProfile() {
+
+    }
+
     public UserProfile(String id, String firstName, String secondName, String email, String user_status) {
 
         this.id = id;
@@ -71,5 +75,14 @@ public class UserProfile implements Serializable {
     }
 
 
-
+    @Override
+    public String toString() {
+        return "UserProfile{" +
+                "id='" + id + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", secondName='" + secondName + '\'' +
+                ", email='" + email + '\'' +
+                ", user_status='" + user_status + '\'' +
+                '}';
+    }
 }

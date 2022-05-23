@@ -23,6 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.yarart.samsung_project.classes.UserProfile;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class RegistrationActivity extends AppCompatActivity {
@@ -59,7 +60,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
     public void onClickUserRegistration(View view) {
 
-        if (editTextEmail.getText().toString().isEmpty() || editTextFirstName.getText().toString().isEmpty() || editTextSecondName.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty() || getEditTextPassword2.getText().toString().isEmpty() || (checkBoxBuyer.isChecked() == false && checkBoxAdmin.isChecked() == false) || (checkBoxBuyer.isChecked() == true && checkBoxAdmin.isChecked() == true)){
+        if (editTextEmail.getText().toString().isEmpty() || editTextFirstName.getText().toString().isEmpty() || editTextSecondName.getText().toString().isEmpty() || editTextPassword.getText().toString().isEmpty() || getEditTextPassword2.getText().toString().isEmpty()
+                || (checkBoxBuyer.isChecked() == false && checkBoxAdmin.isChecked() == false) || (checkBoxBuyer.isChecked() == true && checkBoxAdmin.isChecked() == true)){
             Toast.makeText(this, "Вы что-то пропустили", Toast.LENGTH_SHORT).show();
         } else {
 
@@ -78,8 +80,6 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-
-                                HashMap<String, UserProfile> usersMap = new HashMap<>();
                                 String uid = myAuth.getCurrentUser().getUid();
 
                                 String id = uid;
@@ -88,8 +88,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 String email = editTextEmail.getText().toString();
                                 UserProfile newUser = new UserProfile(id, firstName, secondName, email, PROFILE_TYPE);
 
-                                usersMap.put(uid, newUser);
-                                myDatabase.push().setValue(usersMap);
+                                myDatabase.push().setValue(newUser);
 
 //                                final HashMap<String, UserProfile>[] hashMap = new HashMap[]{new HashMap()};
 //                                myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {

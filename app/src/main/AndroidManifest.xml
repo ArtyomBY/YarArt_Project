@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.SamsungProject">
         <activity
+            android:name=".MainActivity2_Admin"
+            android:exported="false" />
+        <activity
             android:name=".RegistrationActivity"
             android:exported="false" />
         <activity
@@ -24,8 +27,7 @@
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
         <activity
             android:name=".OrderActivity"
             android:exported="true" />
