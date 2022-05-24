@@ -28,7 +28,7 @@ public class BasketFragment extends Fragment {
 
     ListView lv_Basket;
     Product product;
-    Button deleteFromBasket;
+    Button payTheBasket;
     static ArrayList<Product> basketList = new ArrayList<>();
     String total_price_str = Integer.toString(MainActivity.total_price);
     TextView tvTotalPrice;
@@ -50,7 +50,7 @@ public class BasketFragment extends Fragment {
         lv_Basket = v.findViewById(R.id.basketList);
         tvTotalPrice = v.findViewById(R.id.tvTotalPrice);
         tvTotalPrice.setText(total_price_str);
-        deleteFromBasket = v.findViewById(R.id.buttonDeleteFromBasket);
+        payTheBasket = v.findViewById(R.id.btn_payment);
         Product[] products = basketList.toArray(new Product[basketList.size()]);
         ProductBasketAdapter adapter = new ProductBasketAdapter(getContext(), basketList.toArray(products));
         lv_Basket.setAdapter(adapter);
@@ -65,6 +65,7 @@ public class BasketFragment extends Fragment {
 
             }
         });
+
 
 
 

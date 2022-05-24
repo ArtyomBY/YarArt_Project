@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.BasketFragment">
+    tools:context=".fragments.OrderFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +34,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/tvTotalPrice"
+                android:id="@+id/tvTotalPriceOrder"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="xxx"
@@ -52,20 +52,17 @@
         </LinearLayout>
 
         <ListView
-            android:id="@+id/basketList"
+            android:id="@+id/productsFromOrderList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@id/btn_payment"
+            app:layout_constraintBottom_toTopOf="@id/tvOrderStatus"
             app:layout_constraintTop_toBottomOf="@id/linearLayout_basketDescription" />
 
-        <Button
-            android:id="@+id/btn_payment"
+        <TextView
+            android:id="@+id/tvOrderStatus"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="50sp"
             android:backgroundTint="@color/green_app"
-            android:onClick="pay_for_the_shopping_cart"
-            android:text="Оплатить корзину"
-
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <!--            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"-->

@@ -38,7 +38,6 @@ public class CatalogFragment extends Fragment {
         // Required empty public constructor
     }
 
-    View v;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -164,7 +164,8 @@ public class LoginActivity extends AppCompatActivity {
 //                                i.putExtra("User", user);
                                     startActivity(i);
                                 } else {
-
+                                    Intent i = new Intent(LoginActivity.this, MainActivity2_Admin.class);
+                                    startActivity(i);
                                 }
 
                             } else{
