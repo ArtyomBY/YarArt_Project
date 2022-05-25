@@ -45,23 +45,27 @@ public class MainActivity2_Admin extends AppCompatActivity {
 
         bottomNavigationView.setOnItemSelectedListener(item -> {
             switch (item.getItemId()){
+
                 case R.id.refill_menu:
                     replaceFragment(new RefillFragment());
                     bottomNavigationView.getMenu().findItem(R.id.refill_menu).setChecked(true);
 //                    Intent intent = new Intent(this, BasketActivity.class);
 //                    startActivity(intent);
                     break;
+
                 case R.id.order_list_menu:
+
+                case R.id.profile_menu:
                     replaceFragment(new ProfileFragment(user)); //тут
-                    bottomNavigationView.getMenu().findItem(R.id.profil_menu).setChecked(true);
+                    bottomNavigationView.getMenu().findItem(R.id.profile_menu).setChecked(true);
 //                    Intent intent2 = new Intent(this, UserProfileActivity.class);
 //                    startActivity(intent2);
                     break;
+
                 case R.id.catalog_menu:
                     replaceFragment(new CatalogFragment()); //тут
-                    bottomNavigationView.getMenu().findItem(R.id.catatlog_menu).setChecked(true);
+                    bottomNavigationView.getMenu().findItem(R.id.catalog_menu).setChecked(true);
                     break;
-                case R.id.profile_menu://тут
 
             }
 

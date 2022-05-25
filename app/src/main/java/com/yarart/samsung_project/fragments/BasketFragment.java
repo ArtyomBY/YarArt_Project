@@ -30,6 +30,7 @@ public class BasketFragment extends Fragment {
     Product product;
     Button payTheBasket;
     static ArrayList<Product> basketList = new ArrayList<>();
+    Product[] products;
     String total_price_str = Integer.toString(MainActivity.total_price);
     TextView tvTotalPrice;
 
@@ -51,7 +52,7 @@ public class BasketFragment extends Fragment {
         tvTotalPrice = v.findViewById(R.id.tvTotalPrice);
         tvTotalPrice.setText(total_price_str);
         payTheBasket = v.findViewById(R.id.btn_payment);
-        Product[] products = basketList.toArray(new Product[basketList.size()]);
+        products = basketList.toArray(new Product[basketList.size()]);
         ProductBasketAdapter adapter = new ProductBasketAdapter(getContext(), basketList.toArray(products));
         lv_Basket.setAdapter(adapter);
         lv_Basket.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,6 +64,12 @@ public class BasketFragment extends Fragment {
 
                 tvTotalPrice.setText(total_price_str);
 
+            }
+        });
+        payTheBasket.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                pay_for_the_shopping_cart(view, products);
             }
         });
 
@@ -84,8 +91,9 @@ public class BasketFragment extends Fragment {
     }
 
 
-    public void pay_for_the_shopping_cart(View view) {
-
+    public void pay_for_the_shopping_cart(View view, Product[] products) {
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.replaceFragment(new OrderFragment(products));
     }
 
 

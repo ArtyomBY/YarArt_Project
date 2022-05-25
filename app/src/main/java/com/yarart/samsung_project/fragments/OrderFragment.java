@@ -13,6 +13,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Product;
 
@@ -25,7 +26,7 @@ public class OrderFragment extends Fragment {
 
     ArrayList<Product> productsFromOrder = new ArrayList<>();
     ListView lv_order;
-    TextView tvOrderStatus;
+    TextView tvOrderStatus, tvTotalPriceOrder;
 
     public OrderFragment(Product[] products) {
         // Required empty public constructor
@@ -38,10 +39,13 @@ public class OrderFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_order, container, false);
         tvOrderStatus = v.findViewById(R.id.tvOrderStatus);
+        tvTotalPriceOrder = v.findViewById(R.id.tvTotalPriceOrder);
         lv_order = v.findViewById(R.id.productsFromOrderList);
         Product[] products = productsFromOrder.toArray(new Product[productsFromOrder.size()]);
         OrderFragment.ProductOrderAdapter adapter = new OrderFragment.ProductOrderAdapter(getContext(), productsFromOrder.toArray(products));
         lv_order.setAdapter(adapter);
+        tvTotalPriceOrder.setText(Integer.toString(MainActivity.total_price));
+        tvOrderStatus.setText("Заказ не выдан");
 
 
 
@@ -65,7 +69,8 @@ public class OrderFragment extends Fragment {
 
             ((TextView) convertView.findViewById(R.id.textView)).setText(product.getDish());
             ((TextView) convertView.findViewById(R.id.textView2)).setText(Integer.toString(product.getPrice()));
-            //((TextView) convertView.findViewById(R.id.productNumberFromOrder).setTex)
+            TextView viewById = (TextView) convertView.findViewById(R.id.productNumberFromOrder);
+            viewById.setText(Integer.toString(position));
             if (product.getDish().equals("Устрица"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.ustrica);
             if (product.getDish().equals("Питца"))

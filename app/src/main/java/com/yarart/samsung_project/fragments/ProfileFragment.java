@@ -23,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.yarart.samsung_project.LoginActivity;
 import com.yarart.samsung_project.MainActivity;
+import com.yarart.samsung_project.MainActivity2_Admin;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.UserProfile;
 
@@ -36,7 +37,7 @@ public class ProfileFragment extends Fragment {
     View v;
     ImageView profileImage;
     TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region;
-    ImageButton btn_exit;
+    ImageButton btn_exit, btn_editProfile;
     UserProfile userProfile;
 
 
@@ -52,6 +53,7 @@ public class ProfileFragment extends Fragment {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_profile, container, false);
 
+        btn_editProfile = v.findViewById(R.id.editProfileButton);
         profileImage = v.findViewById(R.id.profileImage);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +87,12 @@ public class ProfileFragment extends Fragment {
                 onClickExitFromAccount(view);
             }
         });
+        btn_editProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editProfile(view);
+            }
+        });
         return v;
     }
 
@@ -93,5 +101,10 @@ public class ProfileFragment extends Fragment {
 
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);
+    }
+
+    void editProfile(View view) {
+        MainActivity2_Admin mainActivity2 = (MainActivity2_Admin) requireActivity();
+        mainActivity2.replaceFragment(new EditProfileFragment());
     }
 }
