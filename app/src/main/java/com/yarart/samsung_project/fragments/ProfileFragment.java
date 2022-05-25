@@ -41,9 +41,9 @@ public class ProfileFragment extends Fragment {
 
 
 
-//    public ProfileFragment(UserProfile userProfile) {
-//        this.userProfile = userProfile;
-//    }
+    public ProfileFragment(UserProfile userProfile) {
+        this.userProfile = userProfile;
+    }
 
 
     @Override
@@ -64,13 +64,13 @@ public class ProfileFragment extends Fragment {
 
 
         profile_id = v.findViewById(R.id.tv_user_id);
-//        profile_id.setText(userProfile.getId());
+        profile_id.setText(userProfile.getId());
 
         profile_name = v.findViewById(R.id.profile_name);
-//        profile_name.setText(userProfile.getFirstName() + " " + userProfile.getSecondName());
+        profile_name.setText(userProfile.getFirstName() + " " + userProfile.getSecondName());
 
         profile_type = v.findViewById(R.id.profile_type);
-//        profile_type.setText(userProfile.getUser_status());
+        profile_type.setText(userProfile.getUser_status());
 
         profile_class = v.findViewById(R.id.profile_class);
         profile_school = v.findViewById(R.id.profile_school);
@@ -90,8 +90,6 @@ public class ProfileFragment extends Fragment {
 
     public void onClickExitFromAccount(View view) {
         FirebaseAuth.getInstance().signOut();
-//        FirebaseUser cUser = mAuth.getCurrentUser();
-//        cUser.sign
 
         Intent i = new Intent(getContext(), LoginActivity.class);
         startActivity(i);

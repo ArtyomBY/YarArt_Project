@@ -80,6 +80,7 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
+//                                HashMap<String, UserProfile> usersMap = new HashMap<>();
                                 String uid = myAuth.getCurrentUser().getUid();
 
                                 String id = uid;
@@ -87,25 +88,10 @@ public class RegistrationActivity extends AppCompatActivity {
                                 String secondName = editTextSecondName.getText().toString();
                                 String email = editTextEmail.getText().toString();
                                 UserProfile newUser = new UserProfile(id, firstName, secondName, email, PROFILE_TYPE);
+//                                usersMap.put(uid, newUser);
 
-                                myDatabase.push().setValue(newUser);
+                                myDatabase.child(uid).setValue(newUser);
 
-//                                final HashMap<String, UserProfile>[] hashMap = new HashMap[]{new HashMap()};
-//                                myDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
-//                                    @Override
-//                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                                        if (snapshot.exists()) {
-//                                            hashMap[0] = (HashMap<String, UserProfile>) snapshot.getValue();
-//                                            System.out.println(hashMap[0].get("-N2c1xB4mUIpLDX_FV7u").getEmail());
-//                                        } else
-//                                            Toast.makeText(RegistrationActivity.this, "Ошибка чтения данных", Toast.LENGTH_SHORT).show();
-//                                    }
-//
-//                                    @Override
-//                                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                                    }
-//                                });
 
                                 Toast.makeText(RegistrationActivity.this, "Вы успешно создали аккаунт", Toast.LENGTH_SHORT).show();
 

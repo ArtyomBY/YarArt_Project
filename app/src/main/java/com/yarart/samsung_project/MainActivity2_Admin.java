@@ -35,8 +35,8 @@ public class MainActivity2_Admin extends AppCompatActivity {
     public void init() {
         //Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
 
-//        Bundle args = getIntent().getExtras();
-//        UserProfile user = (UserProfile) args.get("User");
+        Bundle args = getIntent().getExtras();
+        UserProfile user = (UserProfile) args.get("User");
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationViewAdmin);
@@ -52,7 +52,7 @@ public class MainActivity2_Admin extends AppCompatActivity {
 //                    startActivity(intent);
                     break;
                 case R.id.order_list_menu:
-                    replaceFragment(new ProfileFragment()); //тут
+                    replaceFragment(new ProfileFragment(user)); //тут
                     bottomNavigationView.getMenu().findItem(R.id.profil_menu).setChecked(true);
 //                    Intent intent2 = new Intent(this, UserProfileActivity.class);
 //                    startActivity(intent2);

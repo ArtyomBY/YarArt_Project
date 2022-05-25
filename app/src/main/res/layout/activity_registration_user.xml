@@ -89,6 +89,7 @@
         android:layout_marginTop="40dp"
         android:onClick="onClickUserRegistration"
         android:text="Зарегистрироваться"
+        android:background="@color/green_app"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
@@ -114,7 +115,8 @@
         android:layout_marginTop="16dp"
         android:text="Администратор"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        android:backgroundTint="@color/green_app"/>
 
     <CheckBox
         android:id="@+id/checkBoxBuyer"
@@ -124,5 +126,6 @@
         android:layout_marginEnd="48dp"
         android:text="Покупатель"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView7" />
+        app:layout_constraintTop_toBottomOf="@+id/textView7"
+        android:backgroundTint="@color/green_app"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

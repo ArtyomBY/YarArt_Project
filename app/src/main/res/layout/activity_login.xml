@@ -19,7 +19,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="112dp"
+        android:layout_marginTop="180dp"
         android:ems="10"
         android:hint="Введите вашу почту"
         android:inputType="textEmailAddress"
@@ -65,8 +65,10 @@
         android:text="Если у вас еще нет аккаунта пройдите регистрацию"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        app:layout_constraintTop_toBottomOf="@+id/button2"
+        app:layout_constraintVertical_bias="0.907"
         tools:ignore="MissingConstraints" />
 
     <Button
@@ -76,49 +78,50 @@
         android:layout_marginTop="16dp"
         android:onClick="onClickLogin"
         android:text="Войти"
+        android:background="@color/green_app"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextTextPassword"
         tools:ignore="MissingConstraints" />
 
-    <TextView
-        android:id="@+id/textView5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Войти как:"
-        android:textSize="20dp"
-        android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        tools:ignore="MissingConstraints" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView5"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="32dp"-->
+<!--        android:text="Войти как:"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textStyle="italic"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.498"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/button2"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
-    <CheckBox
-        android:id="@+id/checkBoxAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="16dp"
-        android:text="Администратор"
-        app:layout_constraintBottom_toTopOf="@+id/tv_registration"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.078"
-        tools:ignore="MissingConstraints" />
+<!--    <CheckBox-->
+<!--        android:id="@+id/checkBoxAdmin"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="60dp"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:text="Администратор"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tv_registration"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView5"-->
+<!--        app:layout_constraintVertical_bias="0.078"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
-    <CheckBox
-        android:id="@+id/checkBoxBuyer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="60dp"
-        android:text="Покупатель"
-        app:layout_constraintBottom_toTopOf="@+id/tv_registration"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5"
-        app:layout_constraintVertical_bias="0.078"
-        tools:ignore="MissingConstraints" />
+<!--    <CheckBox-->
+<!--        android:id="@+id/checkBoxBuyer"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:layout_marginEnd="60dp"-->
+<!--        android:text="Покупатель"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/tv_registration"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/textView5"-->
+<!--        app:layout_constraintVertical_bias="0.078"-->
+<!--        tools:ignore="MissingConstraints" />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
