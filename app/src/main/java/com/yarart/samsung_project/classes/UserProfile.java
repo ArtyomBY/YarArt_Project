@@ -14,6 +14,7 @@ public class UserProfile implements Serializable {
     private String secondName;
     private String email;
     private String user_status;
+    private double wallet;
 
     public UserProfile() {
 
@@ -28,6 +29,8 @@ public class UserProfile implements Serializable {
         this.secondName = secondName;
         this.email = email;
         this.user_status = user_status;
+        this.wallet = 0.0;
+//        this.wallet = new Wallet(id);
     }
 
     public void change_information() {
@@ -74,6 +77,13 @@ public class UserProfile implements Serializable {
         this.user_status = user_status;
     }
 
+    public double getWallet() {
+        return wallet;
+    }
+
+    public void setWallet(double price) {
+        this.wallet += price;
+    }
 
     @Override
     public String toString() {
@@ -85,4 +95,6 @@ public class UserProfile implements Serializable {
                 ", user_status='" + user_status + '\'' +
                 '}';
     }
+
+
 }

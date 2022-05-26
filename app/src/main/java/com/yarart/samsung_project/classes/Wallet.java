@@ -2,17 +2,18 @@ package com.yarart.samsung_project.classes;
 
 public class Wallet {
 
-    private static int inc = 0;
-    private int id;
+//    private static int inc = 0;
+    private String id;
     private double balance;
 
 
-    public Wallet(){
-        this.id = inc++;
+    public Wallet(String id){
+        this.id = id;
+//        this.id = inc++;
         balance = 0;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 

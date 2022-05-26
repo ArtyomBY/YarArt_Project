@@ -103,9 +103,10 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             });
+            Toast.makeText(LoginActivity.this, "Вы вошли под: " + cUser.getEmail(), Toast.LENGTH_SHORT).show();
 
         } else {
-            Toast.makeText(this, "Ошибка входа", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Войдите в аккаунт", Toast.LENGTH_SHORT).show();
         }
 
 }

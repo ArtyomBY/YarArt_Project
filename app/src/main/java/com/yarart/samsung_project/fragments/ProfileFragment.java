@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +37,7 @@ public class ProfileFragment extends Fragment {
 
     View v;
     ImageView profileImage;
-    TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region;
+    TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region, wallet_balance;
     ImageButton btn_exit, btn_editProfile;
     UserProfile userProfile;
 
@@ -78,6 +79,9 @@ public class ProfileFragment extends Fragment {
         profile_school = v.findViewById(R.id.profile_school);
         profile_region = v.findViewById(R.id.profile_region);
 
+        wallet_balance = v.findViewById(R.id.tv_balance);
+        wallet_balance.setText(Integer.toString((int) userProfile.getWallet()));
+
         profileImage.setImageResource(R.drawable.typical_user);
 
         btn_exit = v.findViewById(R.id.btn_exitFromAccount);
@@ -104,7 +108,15 @@ public class ProfileFragment extends Fragment {
     }
 
     void editProfile(View view) {
-        MainActivity2_Admin mainActivity2 = (MainActivity2_Admin) requireActivity();
-        mainActivity2.replaceFragment(new EditProfileFragment());
+        if (userProfile.getUser_status().equals("Admin")){
+            MainActivity2_Admin mainActivity2 = (MainActivity2_Admin) requireActivity();
+            mainActivity2.replaceFragment(new EditProfileFragment());
+        } else if (userProfile.getUser_status().equals("Buyer")){
+            MainActivity mainActivity = (MainActivity) requireActivity();
+            mainActivity.replaceFragment(new EditProfileFragment());
+        } else {
+            Toast.makeText(getContext(), "Error", Toast.LENGTH_SHORT).show();
+        }
+
     }
 }
