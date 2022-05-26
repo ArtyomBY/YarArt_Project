@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +22,17 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Random;
 
 public class OrderFragment extends Fragment {
 
     ArrayList<Product> productsFromOrder = new ArrayList<>();
     ListView lv_order;
-    TextView tvOrderStatus, tvTotalPriceOrder;
+    TextView tvOrderStatus, tvTotalPriceOrder, tvNumberOfOrder;
+    String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+    "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    String numberOfOrder = "";
+    Random random = new Random();
 
     public OrderFragment(Product[] products) {
         // Required empty public constructor
@@ -38,6 +44,7 @@ public class OrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_order, container, false);
+        tvNumberOfOrder = v.findViewById(R.id.tvNumberOfOrder);
         tvOrderStatus = v.findViewById(R.id.tvOrderStatus);
         tvTotalPriceOrder = v.findViewById(R.id.tvTotalPriceOrder);
         lv_order = v.findViewById(R.id.productsFromOrderList);
@@ -46,11 +53,17 @@ public class OrderFragment extends Fragment {
         lv_order.setAdapter(adapter);
         tvTotalPriceOrder.setText(Integer.toString(MainActivity.total_price));
         tvOrderStatus.setText("Заказ не выдан");
+        for (int i = 1; i<=5; i++) {
+            numberOfOrder += alphabet[random.nextInt(alphabet.length-1)];
+        }
+        tvNumberOfOrder.setText(numberOfOrder);
+        Log.d("Тут", numberOfOrder);
 
 
 
         return v;
     }
+
 
     private class ProductOrderAdapter extends ArrayAdapter<Product> {
 

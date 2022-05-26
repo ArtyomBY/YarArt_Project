@@ -28,11 +28,14 @@ public class BasketFragment extends Fragment {
 
     ListView lv_Basket;
     Product product;
-    Button payTheBasket;
+    Button payTheBasket, clear_basket_List;
     static ArrayList<Product> basketList = new ArrayList<>();
     Product[] products;
     String total_price_str = Integer.toString(MainActivity.total_price);
     TextView tvTotalPrice;
+
+    MainActivity mainActivity;
+
 
     public BasketFragment(Product product) {
         this.product = product;
@@ -44,17 +47,30 @@ public class BasketFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_basket, container, false);
-//        TextView tv = (TextView) v.findViewById(R.id.textView2);
-//        EditText et = (EditText) v.findViewById(R.id.editTextTextPassword2);
-//        tv.setText("Хуй знает что это");
-//        et.setHint("Введите пароль");
+
+        mainActivity = (MainActivity) requireActivity();
+
         lv_Basket = v.findViewById(R.id.basketList);
         tvTotalPrice = v.findViewById(R.id.tvTotalPrice);
         tvTotalPrice.setText(total_price_str);
+        clear_basket_List = v.findViewById(R.id.btn_clear_list);
+//        clear_basket_List.setVisibility(View.VISIBLE);
+        clear_basket_List.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                basketList.clear();
+                MainActivity.total_price = 0;
+                mainActivity.replaceFragment(new BasketFragment());
+
+            }
+        });
+
         payTheBasket = v.findViewById(R.id.btn_payment);
         products = basketList.toArray(new Product[basketList.size()]);
         ProductBasketAdapter adapter = new ProductBasketAdapter(getContext(), basketList.toArray(products));
         lv_Basket.setAdapter(adapter);
+
+
         lv_Basket.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
@@ -94,6 +110,7 @@ public class BasketFragment extends Fragment {
     public void pay_for_the_shopping_cart(View view, Product[] products) {
         MainActivity mainActivity = (MainActivity) requireActivity();
         mainActivity.replaceFragment(new OrderFragment(products));
+
     }
 
 

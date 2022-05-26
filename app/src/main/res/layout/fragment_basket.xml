@@ -66,6 +66,15 @@
             android:onClick="pay_for_the_shopping_cart"
             android:text="Оплатить корзину"
 
+            app:layout_constraintBottom_toTopOf="@id/btn_clear_list"  />
+        <Button
+            android:id="@+id/btn_clear_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/green_app"
+            android:onClick="pay_for_the_shopping_cart"
+            android:text="Очистить корзину"
+
             app:layout_constraintBottom_toBottomOf="parent" />
 
         <!--            app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"-->

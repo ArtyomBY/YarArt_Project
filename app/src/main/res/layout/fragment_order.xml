@@ -14,49 +14,94 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/linearLayout_basketDescription"
+            android:id="@+id/layout_order"
+
+
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/linearLayout_basketDescription"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:text="Итоговая цена: "
+                    android:textSize="35dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTotalPriceOrder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="xxx"
+                    android:textColor="#030104"
+                    android:textSize="35dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" ₽"
+                    android:textColor="@color/color_price"
+                    android:textSize="35dp" />
+
+
+            </LinearLayout>
+
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
+            app:layout_constraintTop_toBottomOf="@id/linearLayout_basketDescription">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
-                android:text="Итоговая цена: "
-                android:textSize="35dp"
-                android:textStyle="bold" />
+                android:text="Номер заказа: "
+                android:textSize="30dp"/>
 
             <TextView
-                android:id="@+id/tvTotalPriceOrder"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvNumberOfOrder"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="xxx"
-                android:textColor="#030104"
-                android:textSize="35dp" />
+                android:text="x"
+                android:textSize="30dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" ₽"
-                android:textColor="@color/color_price"
-                android:textSize="35dp" />
 
 
         </LinearLayout>
+
+
+
+        </LinearLayout>
+
+
 
         <ListView
             android:id="@+id/productsFromOrderList"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/tvOrderStatus"
-            app:layout_constraintTop_toBottomOf="@id/linearLayout_basketDescription" />
+            app:layout_constraintTop_toBottomOf="@id/layout_order" />
 
         <TextView
             android:id="@+id/tvOrderStatus"
