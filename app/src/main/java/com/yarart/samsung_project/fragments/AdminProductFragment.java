@@ -54,6 +54,12 @@ public class AdminProductFragment extends Fragment {
                 deleteFromCatalog(view, product);
             }
         });
+        buttonEditTheProduct.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                editTheProduct(view, product);
+            }
+        });
 
         return v;
     }
@@ -63,7 +69,7 @@ public class AdminProductFragment extends Fragment {
         mainActivity2_admin.replaceFragment(new AdminCatalogFragment());
     }
     public void editTheProduct(View view, Product product) {
-
+        mainActivity2_admin.replaceFragment(new EditProductFragment(product));
     }
 
 }

@@ -24,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
     static public int position = 0;
     static public Uri uriResource;
     public static ArrayList<Product> products = new ArrayList<>();
+    public static int userImageBitmap = 0;
 
     public BottomNavigationView bottomNavigationView;
 
