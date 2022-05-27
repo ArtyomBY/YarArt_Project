@@ -2,12 +2,20 @@ package com.yarart.samsung_project.fragments;
 
 import static android.app.Activity.RESULT_OK;
 
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -28,20 +36,29 @@ import com.yarart.samsung_project.MainActivity2_Admin;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.UserProfile;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URI;
 
 
 public class ProfileFragment extends Fragment {
 
-    static final int GALLERY_REQUEST = 1;
+
+    private static final int IMAGE_PICK_CODE = 1000;
+    private static final int PERMISSION_CODE = 1001;
+    private static final String APP_PREFERENCES = "";
 
     View v;
+
+    static int imageResource;
     ImageView profileImage;
+    static int d;
+
     TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region, wallet_balance;
     ImageButton btn_exit, btn_editProfile;
     UserProfile userProfile;
-
-
 
     public ProfileFragment(UserProfile userProfile) {
         this.userProfile = userProfile;
@@ -55,13 +72,37 @@ public class ProfileFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         btn_editProfile = v.findViewById(R.id.editProfileButton);
+
         profileImage = v.findViewById(R.id.profileImage);
+
+//        InputStream inputStream = requireActivity().getApplicationContext().getAssets().open(){
+//            Drawable d = Drawable.createFromStream(inputStream, null);
+//            profileImage.setImageDrawable(d);
+//        }
+
+//        profileImage.setImageResource(d);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                photoPickerIntent.setType("image/*");
-                startActivityForResult(photoPickerIntent, GALLERY_REQUEST);
+            public void onClick(View v) {
+                //check runtime permission
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+                    if (requireActivity().checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_DENIED){
+                        //permission not granted, request it.
+                        String[] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                        //show popup for runtime permission
+                        requestPermissions(permissions, PERMISSION_CODE);
+                    }
+                    else {
+                        //permission already granted
+                        pickImageFromGallery();
+                    }
+                }
+                else {
+                    //system os is less then marshmallow
+                    pickImageFromGallery();
+                }
+
             }
         });
 
@@ -82,7 +123,6 @@ public class ProfileFragment extends Fragment {
         wallet_balance = v.findViewById(R.id.tv_balance);
         wallet_balance.setText(Integer.toString((int) userProfile.getWallet()));
 
-        profileImage.setImageResource(R.drawable.typical_user);
 
         btn_exit = v.findViewById(R.id.btn_exitFromAccount);
         btn_exit.setOnClickListener(new View.OnClickListener() {
@@ -99,6 +139,50 @@ public class ProfileFragment extends Fragment {
         });
         return v;
     }
+
+
+
+
+
+    //handle result of picked image
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE){
+            //set image to image view
+            MainActivity.uriResource = data.getData();
+            profileImage.setImageURI(data.getData());
+        }
+    }
+    //handle result of runtime permission
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        switch (requestCode){
+            case PERMISSION_CODE:{
+                if (grantResults.length >0 && grantResults[0] ==
+                        PackageManager.PERMISSION_GRANTED){
+                    //permission was granted
+                    pickImageFromGallery();
+                }
+                else {
+                    //permission was denied
+                    Toast.makeText(getContext(), "Permission denied...!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
+    }
+    private void pickImageFromGallery() {
+        //intent to pick image
+        Intent intent = new Intent(Intent.ACTION_PICK);
+        intent.setType("image/*");
+        startActivityForResult(intent, IMAGE_PICK_CODE);
+    }
+
+
+
+
+
+
+
 
     public void onClickExitFromAccount(View view) {
         FirebaseAuth.getInstance().signOut();

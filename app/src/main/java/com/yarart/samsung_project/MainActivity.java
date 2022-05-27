@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     static public int total_price = 0;
     static public int position = 0;
+    static public Uri uriResource;
     public static ArrayList<Product> products = new ArrayList<>();
 
     public BottomNavigationView bottomNavigationView;
