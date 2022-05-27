@@ -9,7 +9,7 @@
         android:id="@+id/main_FrameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBaseline_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="@id/addProductButton">
 
         <ListView
             android:id="@+id/product_list"
@@ -17,6 +17,13 @@
             android:layout_height="match_parent" />
 
     </FrameLayout>
+
+    <Button
+        android:id="@+id/addProductButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Добавить продукт"
+        app:layout_constraintBottom_toBottomOf="@+id/main_FrameLayout"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

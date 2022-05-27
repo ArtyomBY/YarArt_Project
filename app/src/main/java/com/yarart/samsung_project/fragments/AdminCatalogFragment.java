@@ -12,28 +12,24 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.MainActivity2_Admin;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Product;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 
-public class CatalogFragment extends Fragment {
+public class AdminCatalogFragment extends Fragment {
 
     ListView lv_catalog;
-    Button deleteFromBasket;
-    public ArrayList<Product> products = new ArrayList<>();
+    Button deleteFromBasket, addProductToBasketButton;
 
-    public CatalogFragment() {
+    public AdminCatalogFragment() {
         // Required empty public constructor
     }
 
@@ -42,20 +38,21 @@ public class CatalogFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        products = MainActivity.products;
 
-        View v = inflater.inflate(R.layout.fragment_catalog, container, false);
+        View v = inflater.inflate(R.layout.fragment_admin_catalog, container, false);
+        Log.d("тут", MainActivity.products.toString());
 
         lv_catalog = v.findViewById(R.id.product_list);
         deleteFromBasket = v.findViewById(R.id.buttonDeleteFromBasket);
-        Product[] productArray = products.toArray(new Product[products.size()]);
-        ProductCatalogAdapter adapter = new ProductCatalogAdapter(v.getContext(), products.toArray(productArray));
+        addProductToBasketButton = v.findViewById(R.id.addProductButton);
+        Product[] productArray = MainActivity.products.toArray(new Product[MainActivity.products.size()]);
+        ProductCatalogAdapter adapter = new ProductCatalogAdapter(v.getContext(), MainActivity.products.toArray(productArray));
         lv_catalog.setAdapter(adapter);
 
         lv_catalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                look_at_product(view, products.get(adapterView.getPositionForView(view)));
+                look_at_product(view, MainActivity.products.get(adapterView.getPositionForView(view)));
             }
         });
 
@@ -67,9 +64,9 @@ public class CatalogFragment extends Fragment {
     public void look_at_product(View view, Product product) {
         TextView tv = view.findViewById(R.id.textView);
         String str = tv.getText().toString();
-        MainActivity mainActivity = (MainActivity) requireActivity();
+        MainActivity2_Admin mainActivity2_admin = (MainActivity2_Admin) requireActivity();
 //        deleteFromBasket.setVisibility(View.GONE);
-        mainActivity.replaceFragment(new ProductFragment(product));
+        mainActivity2_admin.replaceFragment(new AdminProductFragment(product));
 //        Intent i = new Intent(MainActivity_ProductCatalog.this, ProductActivity.class);
 //        i.putExtra("nd", str);
 //        startActivity(i);

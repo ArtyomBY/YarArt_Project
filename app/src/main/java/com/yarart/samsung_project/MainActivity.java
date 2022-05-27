@@ -10,14 +10,18 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.yarart.samsung_project.classes.Buyer;
+import com.yarart.samsung_project.classes.Product;
 import com.yarart.samsung_project.classes.UserProfile;
 import com.yarart.samsung_project.fragments.BasketFragment;
 import com.yarart.samsung_project.fragments.CatalogFragment;
 import com.yarart.samsung_project.fragments.ProfileFragment;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
     static public int total_price = 0;
     static public int position = 0;
+    public static ArrayList<Product> products = new ArrayList<>();
 
     public BottomNavigationView bottomNavigationView;
 
@@ -32,6 +36,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void init() {
         //Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
+        if (products.size()==0) {
+            products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
+            products.add(new Product("Питца", 35, "Шедевр кулинарии", true, R.drawable.pizza));
+            products.add(new Product("Пирог с картошкой", 16, "Пирожок с картошкой", true, R.drawable.kartoshka));
+        }
 
         Bundle args = getIntent().getExtras();
         UserProfile user = (UserProfile) args.get("User");

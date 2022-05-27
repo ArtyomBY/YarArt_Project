@@ -10,7 +10,9 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.yarart.samsung_project.classes.Buyer;
+import com.yarart.samsung_project.classes.Product;
 import com.yarart.samsung_project.classes.UserProfile;
+import com.yarart.samsung_project.fragments.AdminCatalogFragment;
 import com.yarart.samsung_project.fragments.BasketFragment;
 import com.yarart.samsung_project.fragments.CatalogFragment;
 import com.yarart.samsung_project.fragments.ProfileFragment;
@@ -34,6 +36,11 @@ public class MainActivity2_Admin extends AppCompatActivity {
 
     public void init() {
         //Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
+        if (MainActivity.products.size()==0) {
+            MainActivity.products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
+            MainActivity.products.add(new Product("Питца", 35, "Шедевр кулинарии", true, R.drawable.pizza));
+            MainActivity.products.add(new Product("Пирог с картошкой", 16, "Пирожок с картошкой", true, R.drawable.kartoshka));
+        }
 
         Bundle args = getIntent().getExtras();
         UserProfile user = (UserProfile) args.get("User");
@@ -63,7 +70,7 @@ public class MainActivity2_Admin extends AppCompatActivity {
                     break;
 
                 case R.id.catalog_menu:
-                    replaceFragment(new CatalogFragment()); //тут
+                    replaceFragment(new AdminCatalogFragment()); //тут
                     bottomNavigationView.getMenu().findItem(R.id.catalog_menu).setChecked(true);
                     break;
 

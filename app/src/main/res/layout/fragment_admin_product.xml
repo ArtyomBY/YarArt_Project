@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.ProductFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ProductActivity"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvNameDish"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="40dp"
+            android:textStyle="bold"
+            android:text="Product"/>
+
+        <ImageView
+            android:id="@+id/productImage"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/ustrica"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center">
+
+            <TextView
+                android:id="@+id/productPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:text="xxx"
+                android:textColor="@color/color_price"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" ₽"
+                android:textSize="30dp"
+                android:textColor="@color/color_price"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonEditTheProduct"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Редактировать продукт"
+            android:backgroundTint="@color/green_app"/>
+
+        <Button
+            android:id="@+id/buttonDeleteFromCatalog"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Удалить продукт из каталога"
+            android:backgroundTint="@color/green_app"/>
+
+        <TextView
+            android:id="@+id/productDescription"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Описание продукта: "
+            android:textSize="25dp" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textSize="20dp"
+            android:textStyle="italic"
+            android:text="Осталось:\nСостав:\nМасса:\nКаллорийность:"/>
+
+    </LinearLayout>
+
+</FrameLayout>

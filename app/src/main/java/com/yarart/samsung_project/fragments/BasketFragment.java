@@ -16,6 +16,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.R;
@@ -58,9 +59,12 @@ public class BasketFragment extends Fragment {
         clear_basket_List.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                basketList.clear();
-                MainActivity.total_price = 0;
-                mainActivity.replaceFragment(new BasketFragment());
+                if (basketList.size()!=0) {
+                    basketList.clear();
+                    MainActivity.total_price = 0;
+                    mainActivity.replaceFragment(new BasketFragment());
+                }
+                else Toast.makeText(getContext(), "Корзина пуста", Toast.LENGTH_SHORT).show();
 
             }
         });
@@ -108,8 +112,11 @@ public class BasketFragment extends Fragment {
 
 
     public void pay_for_the_shopping_cart(View view, Product[] products) {
-        MainActivity mainActivity = (MainActivity) requireActivity();
-        mainActivity.replaceFragment(new OrderFragment(products));
+        if (products.length != 0) {
+            MainActivity mainActivity = (MainActivity) requireActivity();
+            mainActivity.replaceFragment(new OrderFragment(products));
+        }
+        else Toast.makeText(getContext(), "Корзина пуста", Toast.LENGTH_SHORT).show();
 
     }
 
