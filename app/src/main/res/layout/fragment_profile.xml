@@ -127,6 +127,12 @@
                         tools:ignore="MissingConstraints"
                         tools:layout_editor_absoluteY="76dp" />
 
+                    <Button
+                        android:id="@+id/goToOrderButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Перейти к заказу" />
+
                 </LinearLayout>
 
 

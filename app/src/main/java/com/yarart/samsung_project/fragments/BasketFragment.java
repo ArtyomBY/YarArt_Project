@@ -28,12 +28,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Basket;
+import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
 import com.yarart.samsung_project.classes.UserProfile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 public class BasketFragment extends Fragment {
 
@@ -47,6 +49,7 @@ public class BasketFragment extends Fragment {
     Product[] products;
     String total_price_str = Integer.toString(MainActivity.total_price);
     TextView tvTotalPrice;
+
 
     MainActivity mainActivity;
 
@@ -128,39 +131,54 @@ public class BasketFragment extends Fragment {
 
 
     public void pay_for_the_shopping_cart(View view, Product[] products) {
-        if (products.length != 0) {
-            if (cUser.getWallet() >= MainActivity.total_price) {
-                mDatabase.child(cUser.getId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<DataSnapshot> task) {
-                        if (task.isSuccessful()) {
-                            DataSnapshot document = task.getResult();
-                            if (document.exists()) {
-                                cUser = document.getValue(UserProfile.class);
-                                if (cUser != null) {
-                                    cUser.setWallet(-Integer.parseInt(total_price_str));
-                                    Map<String, Object> updateMap = new HashMap<>();
-                                    updateMap.put("/" + cUser.getId(), cUser);
-                                    mDatabase.updateChildren(updateMap);
-                                    Toast.makeText(getContext(), "Операция прошла успешно", Toast.LENGTH_SHORT).show();
-                                } else
-                                    Toast.makeText(getContext(), "Безуспешно", Toast.LENGTH_SHORT).show();
+
+        if (MainActivity.userOrder.order_status == null) {
+            if (products.length != 0) {
+                if (cUser.getWallet() >= MainActivity.total_price) {
+                    mDatabase.child(cUser.getId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DataSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DataSnapshot document = task.getResult();
+                                if (document.exists()) {
+                                    cUser = document.getValue(UserProfile.class);
+                                    if (cUser != null) {
+                                        cUser.setWallet(-Integer.parseInt(total_price_str));
+                                        Map<String, Object> updateMap = new HashMap<>();
+                                        updateMap.put("/" + cUser.getId(), cUser);
+                                        mDatabase.updateChildren(updateMap);
+//                                    Toast.makeText(getContext(), "Операция прошла успешно", Toast.LENGTH_SHORT).show();
+                                    } else
+                                        Toast.makeText(getContext(), "Безуспешно", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Log.d("GET_USER", "No such document");
+                                }
                             } else {
-                                Log.d("GET_USER", "No such document");
+                                Log.d("GET_USER", "get failed with ", task.getException());
                             }
-                        } else {
-                            Log.d("GET_USER", "get failed with ", task.getException());
+
                         }
-
-                    }
-                });
-                MainActivity mainActivity = (MainActivity) requireActivity();
-                mainActivity.replaceFragment(new OrderFragment(products));
-            } else
-                Toast.makeText(getContext(), "Недостаточно средств для оплаты", Toast.LENGTH_SHORT).show();
+                    });
+                    MainActivity mainActivity = (MainActivity) requireActivity();
+                    MainActivity.userOrder = new Order("Не выдан", getNumberOfOrder(), new Basket(basketList, MainActivity.total_price, true));
+                    mainActivity.replaceFragment(new OrderFragment(MainActivity.userOrder));
+                } else
+                    Toast.makeText(getContext(), "Недостаточно средств для оплаты", Toast.LENGTH_SHORT).show();
+            }
+            else Toast.makeText(getContext(), "Корзина пуста", Toast.LENGTH_SHORT).show();
         }
-        else Toast.makeText(getContext(), "Корзина пуста", Toast.LENGTH_SHORT).show();
+        else Toast.makeText(getContext(), "Вы уже создали заказ", Toast.LENGTH_SHORT).show();
 
+    }
+
+    public String getNumberOfOrder() {
+        Random random = new Random();
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String a = "";
+        for(int i = 0; i < 5; i++) {
+            a += String.valueOf(alphabet.charAt(random.nextInt(alphabet.length())));
+        }
+        return a;
     }
 
 

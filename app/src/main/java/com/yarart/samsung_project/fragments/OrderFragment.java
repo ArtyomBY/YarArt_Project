@@ -34,8 +34,11 @@ public class OrderFragment extends Fragment {
 
     public OrderFragment(Order order) {
         // Required empty public constructor
-        this.productsFromOrder = order.paidBasket.getProductsFromBasket();
-        this.order = order;
+        if (order.paidBasket.getBasketStatus()) {
+            this.productsFromOrder = order.paidBasket.getProductsFromBasket();
+            this.order = order;
+            MainActivity.userOrder = order;
+        }
     }
 
     @Override
@@ -53,6 +56,7 @@ public class OrderFragment extends Fragment {
         tvTotalPriceOrder.setText(Double.toString(order.paidBasket.getTotal_price_basket()));
         tvOrderStatus.setText(order.order_status);
         tvNumberOfOrder.setText(order.order_number);
+        //MainActivity.orders.add(order);
 
 
 

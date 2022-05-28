@@ -13,6 +13,10 @@ public class Order {
         this.paidBasket = paidBasket;
     }
 
+    public Order() {
+
+    }
+
     public String change_order_status(boolean a){
         if (a) return "Не выдан";
         else return "Выдан";

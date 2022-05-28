@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.yarart.samsung_project.classes.Buyer;
+import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
 import com.yarart.samsung_project.classes.UserProfile;
 import com.yarart.samsung_project.fragments.BasketFragment;
@@ -24,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     static public int position = 0;
     static public Uri uriResource;
     public static ArrayList<Product> products = new ArrayList<>();
+    public static ArrayList<Order> orders = new ArrayList<>();
+    public static Order userOrder = new Order();
     public static int userImageBitmap = 0;
 
     public static UserProfile user;

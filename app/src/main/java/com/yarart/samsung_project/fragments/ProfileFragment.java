@@ -25,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -73,7 +74,9 @@ public class ProfileFragment extends Fragment {
 
     TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region, wallet_balance;
     ImageButton btn_exit, btn_editProfile;
+    Button goToUserOrderButton;
     UserProfile userProfile;
+
 
     public ProfileFragment(UserProfile userProfile) {
         this.userProfile = userProfile;
@@ -87,6 +90,7 @@ public class ProfileFragment extends Fragment {
         v = inflater.inflate(R.layout.fragment_profile, container, false);
 
         btn_editProfile = v.findViewById(R.id.editProfileButton);
+        goToUserOrderButton = v.findViewById(R.id.goToOrderButton);
 
         profileImage = v.findViewById(R.id.profileImage);
 
@@ -118,6 +122,17 @@ public class ProfileFragment extends Fragment {
                     pickImageFromGallery();
                 }
 
+            }
+        });
+
+        goToUserOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (MainActivity.userOrder.order_status!=null) {
+                    MainActivity mainActivity = (MainActivity) requireActivity();
+                    mainActivity.replaceFragment(new OrderFragment(MainActivity.userOrder));
+                }
+               else Toast.makeText(getContext(), "Вы еще не сделали заказ", Toast.LENGTH_SHORT).show();
             }
         });
 
