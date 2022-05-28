@@ -72,6 +72,7 @@ public class ProfileFragment extends Fragment {
     static int imageResource;
     ImageView profileImage;
 
+    androidx.constraintlayout.widget.ConstraintLayout constraintLayout;
     TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region, wallet_balance;
     ImageButton btn_exit, btn_editProfile;
     Button goToUserOrderButton;
@@ -88,6 +89,12 @@ public class ProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_profile, container, false);
+
+        constraintLayout = v.findViewById(R.id.wallet_layout);
+        if (userProfile.getUser_status().equals("Admin")){
+            MainActivity2_Admin mainActivity2 = (MainActivity2_Admin) requireActivity();
+            constraintLayout.setVisibility(View.GONE);
+        }
 
         btn_editProfile = v.findViewById(R.id.editProfileButton);
         goToUserOrderButton = v.findViewById(R.id.goToOrderButton);

@@ -4,14 +4,14 @@
     <item
         android:id="@+id/basket_menu"
         android:title="Корзина"
-        android:icon="@drawable/basket" />
+        android:icon="@drawable/basket_menu_icon" />
     <item
         android:id="@+id/catatlog_menu"
         android:title="Каталог"
-        android:icon="@drawable/catalog" />
+        android:icon="@drawable/catalog_menu_icon" />
     <item
         android:id="@+id/profil_menu"
         android:title="Профиль"
-        android:icon="@drawable/profile" />
+        android:icon="@drawable/profile_menu_icon" />
 
 </menu>

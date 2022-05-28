@@ -131,7 +131,8 @@
                         android:id="@+id/goToOrderButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Перейти к заказу" />
+                        android:text="Перейти к заказу"
+                        android:layout_gravity="center"/>
 
                 </LinearLayout>
 

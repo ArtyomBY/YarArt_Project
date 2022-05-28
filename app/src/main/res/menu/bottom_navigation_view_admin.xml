@@ -6,7 +6,7 @@
         android:icon="@drawable/refill_image" />
     <item
         android:id="@+id/order_list_menu"
-        android:title="Список заказов"
+        android:title="Заказы"
         android:icon="@drawable/order_list_image" />
     <item
         android:id="@+id/catalog_menu"

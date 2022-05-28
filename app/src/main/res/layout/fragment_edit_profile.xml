@@ -46,7 +46,8 @@
             android:id="@+id/profileChangesButtonSave"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="сохранить изменения"/>
+            android:text="сохранить изменения"
+            android:backgroundTint="@color/green_app"/>
 
 
     </LinearLayout>
