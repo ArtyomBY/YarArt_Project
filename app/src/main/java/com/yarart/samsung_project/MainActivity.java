@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.yarart.samsung_project.classes.Basket;
 import com.yarart.samsung_project.classes.Buyer;
 import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
@@ -48,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
             products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
             products.add(new Product("Питца", 35, "Шедевр кулинарии", true, R.drawable.pizza));
             products.add(new Product("Пирог с картошкой", 16, "Пирожок с картошкой", true, R.drawable.kartoshka));
+        }
+        if (orders.size()==0) {
+            orders.add(new Order("Не выдан", "TEST0", new Basket(products, 61, true)));
+            orders.add(new Order("Не выдан", "TEST1", new Basket(products, 54, true)));
+            orders.add(new Order("Не выдан", "TEST2", new Basket(products, 9999, true)));
         }
 
         Bundle args = getIntent().getExtras();
