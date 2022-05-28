@@ -23,7 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Добавить продукт"
-        app:layout_constraintBottom_toBottomOf="@+id/main_FrameLayout"/>
+        app:layout_constraintBottom_toBottomOf="@+id/main_FrameLayout"
+        android:backgroundTint="@color/green_app"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

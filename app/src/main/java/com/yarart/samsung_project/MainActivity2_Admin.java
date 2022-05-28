@@ -1,14 +1,23 @@
 package com.yarart.samsung_project;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.yarart.samsung_project.classes.Buyer;
 import com.yarart.samsung_project.classes.Product;
 import com.yarart.samsung_project.classes.UserProfile;
@@ -18,9 +27,14 @@ import com.yarart.samsung_project.fragments.CatalogFragment;
 import com.yarart.samsung_project.fragments.ProfileFragment;
 import com.yarart.samsung_project.fragments.RefillFragment;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity2_Admin extends AppCompatActivity {
 
     public BottomNavigationView bottomNavigationView;
+
+    public DatabaseReference mDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +59,7 @@ public class MainActivity2_Admin extends AppCompatActivity {
         Bundle args = getIntent().getExtras();
         UserProfile user = (UserProfile) args.get("User");
 
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
         bottomNavigationView = findViewById(R.id.bottomNavigationViewAdmin);
         bottomNavigationView.setSelectedItemId(R.id.refill_menu);

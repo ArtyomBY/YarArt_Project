@@ -17,9 +17,11 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +30,20 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.yarart.samsung_project.LoginActivity;
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.MainActivity2_Admin;
@@ -41,20 +55,21 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URI;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProfileFragment extends Fragment {
-
 
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
     private static final String APP_PREFERENCES = "";
 
     View v;
+    DatabaseReference mDatabase;
 
     static int imageResource;
     ImageView profileImage;
-    static int d;
 
     TextView profile_id, profile_name, profile_type, profile_class, profile_school, profile_region, wallet_balance;
     ImageButton btn_exit, btn_editProfile;
@@ -122,6 +137,19 @@ public class ProfileFragment extends Fragment {
 
         wallet_balance = v.findViewById(R.id.tv_balance);
         wallet_balance.setText(Integer.toString((int) userProfile.getWallet()));
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users").child(userProfile.getId());
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userProfile = snapshot.getValue(UserProfile.class);
+                wallet_balance.setText(Integer.toString((int) userProfile.getWallet()));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
 
         btn_exit = v.findViewById(R.id.btn_exitFromAccount);
