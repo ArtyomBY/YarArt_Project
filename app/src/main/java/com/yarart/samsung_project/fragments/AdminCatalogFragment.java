@@ -28,6 +28,7 @@ public class AdminCatalogFragment extends Fragment {
 
     ListView lv_catalog;
     Button deleteFromBasket, addProductToBasketButton;
+    MainActivity2_Admin  mainActivity2_admin;
 
     public AdminCatalogFragment() {
         // Required empty public constructor
@@ -40,14 +41,20 @@ public class AdminCatalogFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View v = inflater.inflate(R.layout.fragment_admin_catalog, container, false);
-        Log.d("тут", MainActivity.products.toString());
 
+        mainActivity2_admin = (MainActivity2_Admin) requireActivity();
         lv_catalog = v.findViewById(R.id.product_list);
         deleteFromBasket = v.findViewById(R.id.buttonDeleteFromBasket);
         addProductToBasketButton = v.findViewById(R.id.addProductButton);
         Product[] productArray = MainActivity.products.toArray(new Product[MainActivity.products.size()]);
         ProductCatalogAdapter adapter = new ProductCatalogAdapter(v.getContext(), MainActivity.products.toArray(productArray));
         lv_catalog.setAdapter(adapter);
+        addProductToBasketButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mainActivity2_admin.replaceFragment(new AddProductFragment());
+            }
+        });
 
         lv_catalog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -94,11 +101,11 @@ public class AdminCatalogFragment extends Fragment {
 
             ((TextView) convertView.findViewById(R.id.textView)).setText(product.getDish());
             ((TextView) convertView.findViewById(R.id.textView2)).setText(Integer.toString(product.getPrice()));
-            if (product.getDish() == "Устрица")
+            if (product.getDish().equals("Устрица"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.ustrica);
-            if (product.getDish() == "Питца")
+            if (product.getDish().equals("Питца"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.pizza);
-            if (product.getDish() == "Пирог с картошкой")
+            if (product.getDish().equals("Пирог с картошкой"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.kartoshka);
 
 //        CheckBox ch = (CheckBox) convertView.findViewById(R.id.checkbox);
