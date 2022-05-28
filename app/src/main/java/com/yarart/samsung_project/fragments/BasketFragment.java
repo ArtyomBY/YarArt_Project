@@ -3,8 +3,10 @@ package com.yarart.samsung_project.fragments;
 import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,16 +20,25 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Basket;
-import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
+import com.yarart.samsung_project.classes.UserProfile;
 
 import java.util.ArrayList;
-import java.util.Random;
+import java.util.HashMap;
+import java.util.Map;
 
 public class BasketFragment extends Fragment {
+
+    UserProfile cUser;
+    DatabaseReference mDatabase;
 
     ListView lv_Basket;
     Product product;
@@ -36,10 +47,6 @@ public class BasketFragment extends Fragment {
     Product[] products;
     String total_price_str = Integer.toString(MainActivity.total_price);
     TextView tvTotalPrice;
-    String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-            "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-    Random random = new Random();
-    String numberOfOrder = "";
 
     MainActivity mainActivity;
 
@@ -48,6 +55,7 @@ public class BasketFragment extends Fragment {
         this.product = product;
     }
     public BasketFragment() {
+        this.cUser = MainActivity.user;
     }
 
     @Override
@@ -56,6 +64,8 @@ public class BasketFragment extends Fragment {
         View v = inflater.inflate(R.layout.fragment_basket, container, false);
 
         mainActivity = (MainActivity) requireActivity();
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
 
         lv_Basket = v.findViewById(R.id.basketList);
         tvTotalPrice = v.findViewById(R.id.tvTotalPrice);
@@ -74,9 +84,6 @@ public class BasketFragment extends Fragment {
 
             }
         });
-        for (int i = 1; i<=5; i++) {
-            numberOfOrder += alphabet[random.nextInt(alphabet.length-1)];
-        }
 
         payTheBasket = v.findViewById(R.id.btn_payment);
         products = basketList.toArray(new Product[basketList.size()]);
@@ -98,7 +105,7 @@ public class BasketFragment extends Fragment {
         payTheBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pay_for_the_shopping_cart(view, new Order("Не выдан", numberOfOrder, new Basket(basketList, MainActivity.total_price, true)));
+                pay_for_the_shopping_cart(view, products);
             }
         });
 
@@ -120,10 +127,37 @@ public class BasketFragment extends Fragment {
     }
 
 
-    public void pay_for_the_shopping_cart(View view, Order order) {
+    public void pay_for_the_shopping_cart(View view, Product[] products) {
         if (products.length != 0) {
-            MainActivity mainActivity = (MainActivity) requireActivity();
-            mainActivity.replaceFragment(new OrderFragment(order));
+            if (cUser.getWallet() >= MainActivity.total_price) {
+                mDatabase.child(cUser.getId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DataSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DataSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                cUser = document.getValue(UserProfile.class);
+                                if (cUser != null) {
+                                    cUser.setWallet(-Integer.parseInt(total_price_str));
+                                    Map<String, Object> updateMap = new HashMap<>();
+                                    updateMap.put("/" + cUser.getId(), cUser);
+                                    mDatabase.updateChildren(updateMap);
+                                    Toast.makeText(getContext(), "Операция прошла успешно", Toast.LENGTH_SHORT).show();
+                                } else
+                                    Toast.makeText(getContext(), "Безуспешно", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Log.d("GET_USER", "No such document");
+                            }
+                        } else {
+                            Log.d("GET_USER", "get failed with ", task.getException());
+                        }
+
+                    }
+                });
+                MainActivity mainActivity = (MainActivity) requireActivity();
+                mainActivity.replaceFragment(new OrderFragment(products));
+            } else
+                Toast.makeText(getContext(), "Недостаточно средств для оплаты", Toast.LENGTH_SHORT).show();
         }
         else Toast.makeText(getContext(), "Корзина пуста", Toast.LENGTH_SHORT).show();
 

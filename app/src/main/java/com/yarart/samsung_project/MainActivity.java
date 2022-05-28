@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<Product> products = new ArrayList<>();
     public static int userImageBitmap = 0;
 
+    public static UserProfile user;
+
     public BottomNavigationView bottomNavigationView;
 
     @Override
@@ -46,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Bundle args = getIntent().getExtras();
-        UserProfile user = (UserProfile) args.get("User");
+        user = (UserProfile) args.get("User");
 
 
         bottomNavigationView = findViewById(R.id.bottomNavigationView);
