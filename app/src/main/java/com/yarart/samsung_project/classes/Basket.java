@@ -1,33 +1,29 @@
 package com.yarart.samsung_project.classes;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Basket {
-    List<Product> productList_forPayment;
+    ArrayList<Product> productList_forPayment;
     private double total_price_basket;
     private boolean basket_status;
 
-    public Basket(List<Product> basketList){
+    public Basket(ArrayList<Product> basketList, double total_price_basket, boolean basket_status){
         this.productList_forPayment = basketList;
-//        this.total_price_basket = total_price_basket;
-        basket_status = false;
+        this.total_price_basket = total_price_basket;
+        this.basket_status = basket_status;
     }
 
-    public void addToProductList_forPayment() {
-        productList_forPayment.add(new Product());
+    public void addToProductList_forPayment(Product product) {
+        productList_forPayment.add(product);
     };
 
 
-    public void deleteProduct_fromBasket(String nameDish){ // int id
+    public void deleteProduct_fromBasket(Product product){ // int id
 
-        productList_forPayment.remove(nameDish);
-
-    }
-
-    public void payment(int id, double d){
+       productList_forPayment.remove(productList_forPayment.indexOf(product));
 
     }
-
 
     public double getTotal_price_basket() {
         return total_price_basket;
@@ -37,11 +33,14 @@ public class Basket {
         this.total_price_basket = total_price_basket;
     }
 
-    public boolean isBasket_status() {
+    public boolean getBasketStatus() {
         return basket_status;
     }
 
     public void setBasket_status(boolean basket_status) {
         this.basket_status = basket_status;
+    }
+    public ArrayList<Product> getProductsFromBasket() {
+        return productList_forPayment;
     }
 }

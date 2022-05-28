@@ -2,10 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yarart.samsung_project">
 
-<<<<<<< HEAD
     <!--//Adding Read External Storage Permission-->
-=======
->>>>>>> d9978c497c2a7da9ff167e828412ded0457234dd
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application

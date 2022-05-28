@@ -21,9 +21,11 @@ import android.widget.Toast;
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Basket;
+import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 public class BasketFragment extends Fragment {
 
@@ -34,6 +36,10 @@ public class BasketFragment extends Fragment {
     Product[] products;
     String total_price_str = Integer.toString(MainActivity.total_price);
     TextView tvTotalPrice;
+    String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+            "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+    Random random = new Random();
+    String numberOfOrder = "";
 
     MainActivity mainActivity;
 
@@ -68,6 +74,9 @@ public class BasketFragment extends Fragment {
 
             }
         });
+        for (int i = 1; i<=5; i++) {
+            numberOfOrder += alphabet[random.nextInt(alphabet.length-1)];
+        }
 
         payTheBasket = v.findViewById(R.id.btn_payment);
         products = basketList.toArray(new Product[basketList.size()]);
@@ -89,7 +98,7 @@ public class BasketFragment extends Fragment {
         payTheBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pay_for_the_shopping_cart(view, products);
+                pay_for_the_shopping_cart(view, new Order("Не выдан", numberOfOrder, new Basket(basketList, MainActivity.total_price, true)));
             }
         });
 
@@ -111,10 +120,10 @@ public class BasketFragment extends Fragment {
     }
 
 
-    public void pay_for_the_shopping_cart(View view, Product[] products) {
+    public void pay_for_the_shopping_cart(View view, Order order) {
         if (products.length != 0) {
             MainActivity mainActivity = (MainActivity) requireActivity();
-            mainActivity.replaceFragment(new OrderFragment(products));
+            mainActivity.replaceFragment(new OrderFragment(order));
         }
         else Toast.makeText(getContext(), "Корзина пуста", Toast.LENGTH_SHORT).show();
 

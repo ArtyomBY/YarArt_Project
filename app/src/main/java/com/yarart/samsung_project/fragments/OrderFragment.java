@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.R;
+import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
 
 import java.lang.reflect.Array;
@@ -29,14 +30,12 @@ public class OrderFragment extends Fragment {
     ArrayList<Product> productsFromOrder = new ArrayList<>();
     ListView lv_order;
     TextView tvOrderStatus, tvTotalPriceOrder, tvNumberOfOrder;
-    String[] alphabet = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
-    "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
-    String numberOfOrder = "";
-    Random random = new Random();
+    Order order;
 
-    public OrderFragment(Product[] products) {
+    public OrderFragment(Order order) {
         // Required empty public constructor
-        Collections.addAll(productsFromOrder, products);
+        this.productsFromOrder = order.paidBasket.getProductsFromBasket();
+        this.order = order;
     }
 
     @Override
@@ -51,13 +50,9 @@ public class OrderFragment extends Fragment {
         Product[] products = productsFromOrder.toArray(new Product[productsFromOrder.size()]);
         OrderFragment.ProductOrderAdapter adapter = new OrderFragment.ProductOrderAdapter(getContext(), productsFromOrder.toArray(products));
         lv_order.setAdapter(adapter);
-        tvTotalPriceOrder.setText(Integer.toString(MainActivity.total_price));
-        tvOrderStatus.setText("Заказ не выдан");
-        for (int i = 1; i<=5; i++) {
-            numberOfOrder += alphabet[random.nextInt(alphabet.length-1)];
-        }
-        tvNumberOfOrder.setText(numberOfOrder);
-        Log.d("Тут", numberOfOrder);
+        tvTotalPriceOrder.setText(Double.toString(order.paidBasket.getTotal_price_basket()));
+        tvOrderStatus.setText(order.order_status);
+        tvNumberOfOrder.setText(order.order_number);
 
 
 
