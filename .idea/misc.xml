@@ -33,6 +33,17 @@
         <entry key="..\:/IntelliJ Projects/Bykov_Artyom/SamsungProject_v2(19.05.22)/app/src/main/res/layout/fragment_profile.xml" value="0.36666666666666664" />
         <entry key="..\:/IntelliJ Projects/Bykov_Artyom/SamsungProject_v2(19.05.22)/app/src/main/res/menu/bottom_navigation_view.xml" value="0.36666666666666664" />
         <entry key="..\:/IntelliJ Projects/Bykov_Artyom/SamsungProject_v2(19.05.22)/app/src/main/res/menu/bottom_navigation_view_admin.xml" value="0.36666666666666664" />
+<<<<<<< HEAD
+=======
+        <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/activity_main_activity2_admin.xml" value="0.371875" />
+        <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/fragment_admin_catalog.xml" value="0.371875" />
+        <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/fragment_admin_product.xml" value="0.371875" />
+        <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/fragment_basket.xml" value="0.1921875" />
+        <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/fragment_catalog.xml" value="0.33" />
+        <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/fragment_edit_product.xml" value="0.371875" />
+        <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/fragment_edit_profile.xml" value="0.371875" />
+        <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/fragment_order.xml" value="0.371875" />
+>>>>>>> d9978c497c2a7da9ff167e828412ded0457234dd
         <entry key="..\:/programs for codding/YarArt_Project/app/src/main/res/layout/fragment_product.xml" value="0.371875" />
       </map>
     </option>
