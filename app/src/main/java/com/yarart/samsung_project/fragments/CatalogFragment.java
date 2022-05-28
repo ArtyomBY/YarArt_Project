@@ -97,11 +97,11 @@ public class CatalogFragment extends Fragment {
 
             ((TextView) convertView.findViewById(R.id.textView)).setText(product.getDish());
             ((TextView) convertView.findViewById(R.id.textView2)).setText(Integer.toString(product.getPrice()));
-            if (product.getDish() == "Устрица")
+            if (product.getDish().equals("Устрица"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.ustrica);
-            if (product.getDish() == "Питца")
+            if (product.getDish().equals("Питца"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.pizza);
-            if (product.getDish() == "Пирог с картошкой")
+            if (product.getDish().equals("Пирог с картошкой"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.kartoshka);
 
 //        CheckBox ch = (CheckBox) convertView.findViewById(R.id.checkbox);
