@@ -41,14 +41,12 @@ public class OrderFragment extends Fragment {
 
     public OrderFragment(Order order) {
         // Required empty public constructor
-        if (order.paidBasket.getBasketStatus()) {
             this.productsFromOrder = order.paidBasket.getProductsFromBasket();
             this.order = order;
             MainActivity.userOrder = order;
             mDatabase = FirebaseDatabase.getInstance().getReference("Orders").child(order.getOrder_number());
             mDatabase.setValue(order);
 
-        }
     }
 
     @Override
