@@ -34,14 +34,68 @@ public class OrderListFragment extends Fragment {
     DatabaseReference mDatabase;
 
 
-//    ArrayList<Order> orders;
+    ArrayList<Order> orders;
     ListView lvOrderList;
 
     MainActivity2_Admin mainActivity2_admin;
 
-    public OrderListFragment() { //ArrayList<Order> orders
+    public OrderListFragment(ArrayList<Order> orders) {
         // Required empty public constructor
-//        this.orders = orders;
+        this.orders = orders;
+        mDatabase = FirebaseDatabase.getInstance().getReference("Orders");
+//        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+//            @Override
+//            public void onComplete(@NonNull Task<DataSnapshot> task) {
+//                if (task.isSuccessful()) {
+//                    DataSnapshot document = task.getResult();
+//                    if (document.exists()) {
+//                        orders = document.getValue(ArrayList.class);
+//                        Toast.makeText(mainActivity2_admin, "Список заказов обновлен", Toast.LENGTH_SHORT).show();
+//                        Log.d("GET_ORDERS", "onComplete: успешно");
+//                    } else {
+//                        Log.d("GET_ORDERS", "onComplete: успешно");
+//                    }
+//                } else {
+//                    Log.d("GET_ORDERS", "get failed with ", task.getException());
+//                }
+//
+//            }
+//        });
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DataSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        // и затем вот здесь распаковать данные
+                         HashMap<String, Order> orders_list_fb = document.getValue(new GenericTypeIndicator<HashMap<String, Order>>() {
+                         });
+
+                        // Но поскольку ID юзера не совпадает, приходится вытаскивать целый список данных в виде хэшмапа
+                        // у getValue сложный параметр, он используется для конвертации к Generic-типу (это который в <> указан)
+                        // Везде, где нужно вытащить целый список данных, можно так писать.
+//                                                HashMap<String, UserProfile> users = document.getValue(new GenericTypeIndicator<HashMap<String, UserProfile>>() {
+//                                                });
+
+                        for (HashMap.Entry<String, Order> pair: orders_list_fb.entrySet())
+                        {
+                            System.out.println(pair.getKey() + " " + pair.getValue());
+                            orders.add(pair.getValue()); //nenenenen
+                        }
+
+                        // TODO
+                        // Здесь дальше уже нужно перебрать через цикл HashMap и найти пользователя с нужным email-ом
+                        // (по сути из-за поломки айдишников это единственный вариант на данный момент)
+                        // и выбрать юзера с нужным email-ом и уже с ним какие-то действия делать, какие вы хотели
+                        Log.d("GET_ORDERS", "onComplete: успешно");
+                    } else {
+                        Log.d("GET_ORDERS", "onComplete: безуспешно");
+                    }
+                } else {
+                    Log.d("GET_ORDERS", "get failed with ", task.getException());
+                }
+            }
+        });
     }
 
     @Override
@@ -73,7 +127,7 @@ public class OrderListFragment extends Fragment {
 
         lvOrderList = v.findViewById(R.id.productsFromOrderList);
 
-        Order[] orderArray = MainActivity2_Admin.orders.toArray(new Order[MainActivity2_Admin.orders.size()]);
+        Order[] orderArray = orders.toArray(new Order[orders.size()]);
 
 
 //        FirebaseListOptions<HashMap<String, Order>> options = new FirebaseListOptions.Builder<HashMap<String, Order>>()
@@ -91,13 +145,13 @@ public class OrderListFragment extends Fragment {
 
 
 
-        OrderListFragment.OrderArrayAdapter adapter = new OrderListFragment.OrderArrayAdapter(v.getContext(), MainActivity2_Admin.orders.toArray(orderArray));
+        OrderListFragment.OrderArrayAdapter adapter = new OrderListFragment.OrderArrayAdapter(v.getContext(), orders.toArray(orderArray));
         lvOrderList.setAdapter(adapter);
 
         lvOrderList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                mainActivity2_admin.replaceFragment(new OrderFragment(MainActivity2_Admin.orders.get(adapterView.getPositionForView(view))));
+                mainActivity2_admin.replaceFragment(new OrderFragment(orders.get(adapterView.getPositionForView(view))));
             }
         });
 

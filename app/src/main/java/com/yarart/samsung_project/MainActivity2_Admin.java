@@ -30,6 +30,7 @@ import com.yarart.samsung_project.fragments.AdminCatalogFragment;
 import com.yarart.samsung_project.fragments.BasketFragment;
 import com.yarart.samsung_project.fragments.CatalogFragment;
 import com.yarart.samsung_project.fragments.OrderListFragment;
+import com.yarart.samsung_project.fragments.OrderListFragmentTwo;
 import com.yarart.samsung_project.fragments.ProfileFragment;
 import com.yarart.samsung_project.fragments.RefillFragment;
 
@@ -88,10 +89,10 @@ public class MainActivity2_Admin extends AppCompatActivity {
             MainActivity.products.add(new Product("Питца", 35, "Шедевр кулинарии", true, R.drawable.pizza));
             MainActivity.products.add(new Product("Пирог с картошкой", 16, "Пирожок с картошкой", true, R.drawable.kartoshka));
         }
-        if (orders.size()==0) {
-            orders.add(new Order("Не выдан", "TEST0", new Basket(MainActivity.products, 61, true)));
-            orders.add(new Order("Не выдан", "TEST1", new Basket(MainActivity.products, 54, true)));
-            orders.add(new Order("Не выдан", "TEST2", new Basket(MainActivity.products, 9999, true)));
+        if (MainActivity.orders.size()==0) {
+            MainActivity.orders.add(new Order("Не выдан", "TEST0", new Basket(MainActivity.products, 61, true)));
+            MainActivity.orders.add(new Order("Не выдан", "TEST1", new Basket(MainActivity.products, 54, true)));
+            MainActivity.orders.add(new Order("Не выдан", "TEST2", new Basket(MainActivity.products, 9999, true)));
         }
 
         Bundle args = getIntent().getExtras();
@@ -110,7 +111,7 @@ public class MainActivity2_Admin extends AppCompatActivity {
                     break;
 
                 case R.id.order_list_menu:
-                    replaceFragment(new OrderListFragment());
+                    replaceFragment(new OrderListFragmentTwo(MainActivity.orders));
                     bottomNavigationView.getMenu().findItem(R.id.order_list_menu).setChecked(true);
                     break;
 
