@@ -38,6 +38,7 @@ import java.util.Map;
 public class MainActivity2_Admin extends AppCompatActivity {
 
     public BottomNavigationView bottomNavigationView;
+    public static boolean isActivityCreated = false;
 
     public DatabaseReference mDatabase;
 
@@ -45,7 +46,7 @@ public class MainActivity2_Admin extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_activity2_admin);
-
+        isActivityCreated = true;
         init();
 
 

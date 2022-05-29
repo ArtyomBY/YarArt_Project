@@ -65,6 +65,7 @@
             </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/linearlayout2InOrderFragment"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -90,7 +91,24 @@
 
         </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/sendNoticeToBuyerButton"
+                    android:layout_width="250dp"
+                    android:layout_height="50dp"
+                    android:text="отправить уведомление"/>
+
+                <Button
+                    android:id="@+id/deleteOrderButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="удалить заказ"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

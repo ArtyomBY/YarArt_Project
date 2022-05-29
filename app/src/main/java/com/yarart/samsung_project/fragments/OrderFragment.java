@@ -10,11 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.yarart.samsung_project.MainActivity;
+import com.yarart.samsung_project.MainActivity2_Admin;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
@@ -31,6 +33,7 @@ public class OrderFragment extends Fragment {
     ListView lv_order;
     TextView tvOrderStatus, tvTotalPriceOrder, tvNumberOfOrder;
     Order order;
+    Button sendNoticeToBuyerButton, deleteOrderButton;
 
     public OrderFragment(Order order) {
         // Required empty public constructor
@@ -46,6 +49,12 @@ public class OrderFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_order, container, false);
+        sendNoticeToBuyerButton = v.findViewById(R.id.sendNoticeToBuyerButton);
+        deleteOrderButton = v.findViewById(R.id.deleteOrderButton);
+        if (!MainActivity2_Admin.isActivityCreated) {
+            sendNoticeToBuyerButton.setVisibility(View.GONE);
+            deleteOrderButton.setVisibility(View.GONE);
+        }
         tvNumberOfOrder = v.findViewById(R.id.tvNumberOfOrder);
         tvOrderStatus = v.findViewById(R.id.tvOrderStatus);
         tvTotalPriceOrder = v.findViewById(R.id.tvTotalPriceOrder);
@@ -56,11 +65,31 @@ public class OrderFragment extends Fragment {
         tvTotalPriceOrder.setText(Double.toString(order.paidBasket.getTotal_price_basket()));
         tvOrderStatus.setText(order.order_status);
         tvNumberOfOrder.setText(order.order_number);
-        //MainActivity.orders.add(order);
+        MainActivity.orders.add(order);
+        sendNoticeToBuyerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                sendNoticeToBuyer(view, order);
+            }
+        });
+        deleteOrderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                deleteOrderFromOrderList(view, order);
+            }
+        });
 
 
 
         return v;
+    }
+
+    public void sendNoticeToBuyer(View view, Order order) {
+
+    }
+
+    public void deleteOrderFromOrderList(View view, Order order) {
+        MainActivity.orders.remove(MainActivity.orders.indexOf(order));
     }
 
 

@@ -74,10 +74,12 @@ public class OrderListFragment extends Fragment {
             TextView numberOfOrder = convertView.findViewById(R.id.etNumberOfOrder);
             TextView priceOfOrder = convertView.findViewById(R.id.etPriceOfOrder);
             TextView positionOfOrderInList = convertView.findViewById(R.id.etPositionOfOrderInList);
+            TextView statusOfOrder = convertView.findViewById(R.id.tvStatusOfOrder);
             //
             numberOfOrder.setText(order.order_number);
             priceOfOrder.setText(Double.toString(order.paidBasket.getTotal_price_basket()));
             positionOfOrderInList.setText(Integer.toString(position));
+            statusOfOrder.setText(order.order_status);
 
             return convertView;
         }
