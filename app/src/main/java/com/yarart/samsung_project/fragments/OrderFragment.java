@@ -65,7 +65,6 @@ public class OrderFragment extends Fragment {
         tvTotalPriceOrder.setText(Double.toString(order.paidBasket.getTotal_price_basket()));
         tvOrderStatus.setText(order.order_status);
         tvNumberOfOrder.setText(order.order_number);
-        MainActivity.orders.add(order);
         sendNoticeToBuyerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -75,7 +74,7 @@ public class OrderFragment extends Fragment {
         deleteOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                deleteOrderFromOrderList(view, order);
+                deleteOrderFromOrderList(view, order, MainActivity.orders);
             }
         });
 
@@ -88,8 +87,10 @@ public class OrderFragment extends Fragment {
 
     }
 
-    public void deleteOrderFromOrderList(View view, Order order) {
+    public void deleteOrderFromOrderList(View view, Order order, ArrayList<Order> orders) {
         MainActivity.orders.remove(MainActivity.orders.indexOf(order));
+        MainActivity2_Admin mainActivity2_admin = (MainActivity2_Admin) requireActivity();
+        mainActivity2_admin.replaceFragment(new OrderListFragment(orders));
     }
 
 

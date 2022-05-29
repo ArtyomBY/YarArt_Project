@@ -32,7 +32,10 @@ import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
 import com.yarart.samsung_project.classes.UserProfile;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -161,8 +164,11 @@ public class BasketFragment extends Fragment {
                     });
                     MainActivity mainActivity = (MainActivity) requireActivity();
                     MainActivity.numberOfOrder += 1;
-                    MainActivity.userOrder = new Order("Не выдан", Integer.toString(MainActivity.numberOfOrder), new Basket(basketList, MainActivity.total_price, true));
-                    MainActivity.orders.add(new Order("Не выдан", Integer.toString(MainActivity.numberOfOrder), new Basket(basketList, MainActivity.total_price, true)));
+                    for (int i = 0; i < basketList.size(); i++) {
+                        MainActivity.productsFromBasket.add(basketList.get(i));
+                    }
+                    MainActivity.userOrder = new Order("Не выдан", Integer.toString(MainActivity.numberOfOrder), new Basket(MainActivity.productsFromBasket, MainActivity.total_price, true));
+                    MainActivity.orders.add(MainActivity.userOrder);
                     mainActivity.replaceFragment(new OrderFragment(MainActivity.userOrder));
                 } else
                     Toast.makeText(getContext(), "Недостаточно средств для оплаты", Toast.LENGTH_SHORT).show();

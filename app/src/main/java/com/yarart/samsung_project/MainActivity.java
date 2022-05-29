@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     static public Uri uriResource;
     public static ArrayList<Product> products = new ArrayList<>();
     public static ArrayList<Order> orders = new ArrayList<>();
+    public static ArrayList<Product> productsFromBasket = new ArrayList<>();
     public static Order userOrder = new Order();
     public static int userImageBitmap = 0;
     public static boolean isActivityCreated = false;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         isActivityCreated = true;
-        if (MainActivity2_Admin.isActivityCreated) isActivityCreated = false;
+        if (MainActivity2_Admin.isActivityCreated) MainActivity2_Admin.isActivityCreated = false;
         init();
     }
 
