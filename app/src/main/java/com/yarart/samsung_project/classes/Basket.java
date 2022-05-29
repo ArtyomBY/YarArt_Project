@@ -13,6 +13,9 @@ public class Basket {
         this.total_price_basket = total_price_basket;
         this.basket_status = basket_status;
     }
+    public Basket(){
+
+    }
 
     public void addToProductList_forPayment(Product product) {
         productList_forPayment.add(product);
