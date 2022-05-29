@@ -111,7 +111,7 @@ public class MainActivity2_Admin extends AppCompatActivity {
                     break;
 
                 case R.id.order_list_menu:
-                    replaceFragment(new OrderListFragmentTwo(MainActivity.orders));
+                    replaceFragment(new OrderListFragment());
                     bottomNavigationView.getMenu().findItem(R.id.order_list_menu).setChecked(true);
                     break;
 
