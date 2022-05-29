@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
     public static Order userOrder = new Order();
     public static int userImageBitmap = 0;
     public static boolean isActivityCreated = false;
+    public static int numberOfOrder = 0;
 
     public static UserProfile user;
 

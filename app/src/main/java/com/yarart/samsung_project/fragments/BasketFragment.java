@@ -160,8 +160,9 @@ public class BasketFragment extends Fragment {
                         }
                     });
                     MainActivity mainActivity = (MainActivity) requireActivity();
-                    MainActivity.userOrder = new Order("Не выдан", getNumberOfOrder(), new Basket(basketList, MainActivity.total_price, true));
-                    MainActivity.orders.add(new Order("Не выдан", getNumberOfOrder(), new Basket(basketList, MainActivity.total_price, true)));
+                    MainActivity.numberOfOrder += 1;
+                    MainActivity.userOrder = new Order("Не выдан", Integer.toString(MainActivity.numberOfOrder), new Basket(basketList, MainActivity.total_price, true));
+                    MainActivity.orders.add(new Order("Не выдан", Integer.toString(MainActivity.numberOfOrder), new Basket(basketList, MainActivity.total_price, true)));
                     mainActivity.replaceFragment(new OrderFragment(MainActivity.userOrder));
                 } else
                     Toast.makeText(getContext(), "Недостаточно средств для оплаты", Toast.LENGTH_SHORT).show();
