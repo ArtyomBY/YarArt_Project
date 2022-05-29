@@ -18,18 +18,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.yarart.samsung_project.MainActivity2_Admin;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Order;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class OrderListFragment extends Fragment {
+
+    DatabaseReference mDatabase;
 
     ListView lvOrderList;
 
@@ -41,6 +46,30 @@ public class OrderListFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+//        mDatabase = FirebaseDatabase.getInstance().getReference("Orders");
+//        mDatabase.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                MainActivity2_Admin.orders.clear();
+//                HashMap<String, Order> orders_list_fb = snapshot.getValue(new GenericTypeIndicator<HashMap<String, Order>>() {});
+//                for (HashMap.Entry<String, Order> pair: orders_list_fb.entrySet())
+//                {
+//                    System.out.println(pair.getKey() + " " + pair.getValue());
+//                    MainActivity2_Admin.orders.add(pair.getValue());
+//                    Map<String, Object> updateMap = new HashMap<>();
+//                    updateMap.put("/" + pair.getKey(), pair.getValue());
+//                    mDatabase.updateChildren(updateMap);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) {
+//
+//            }
+//        });
+
+
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_order_list, container, false);
 

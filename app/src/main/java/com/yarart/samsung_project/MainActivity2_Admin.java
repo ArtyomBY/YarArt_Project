@@ -8,14 +8,17 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
+import com.google.firebase.database.ValueEventListener;
 import com.yarart.samsung_project.classes.Basket;
 import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
@@ -27,6 +30,7 @@ import com.yarart.samsung_project.fragments.RefillFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity2_Admin extends AppCompatActivity {
 
@@ -42,7 +46,6 @@ public class MainActivity2_Admin extends AppCompatActivity {
         setContentView(R.layout.activity_main_activity2_admin);
         isActivityCreated = true;
         init();
-
 
 
     }
@@ -70,6 +73,27 @@ public class MainActivity2_Admin extends AppCompatActivity {
                 } else {
                     Log.d("GET_ORDERS", "get failed with ", task.getException());
                 }
+            }
+        });
+
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                orders.clear();
+                HashMap<String, Order> orders_list_fb = snapshot.getValue(new GenericTypeIndicator<HashMap<String, Order>>() {});
+                for (HashMap.Entry<String, Order> pair: orders_list_fb.entrySet())
+                {
+                    System.out.println(pair.getKey() + " " + pair.getValue());
+                    orders.add(pair.getValue());
+                    Map<String, Object> updateMap = new HashMap<>();
+                    updateMap.put("/" + pair.getKey(), pair.getValue());
+                    mDatabase.updateChildren(updateMap);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
 
