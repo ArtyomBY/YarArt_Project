@@ -31,8 +31,6 @@ import java.util.HashMap;
 
 public class OrderListFragment extends Fragment {
 
-    DatabaseReference mDatabase;
-
     ListView lvOrderList;
 
     MainActivity2_Admin mainActivity2_admin;
@@ -46,44 +44,12 @@ public class OrderListFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_order_list, container, false);
 
-
-//        adapter = new FirebaseRecyclerAdapter<HashMap<String, Order>, TaskViewHolder>(HashMap.class, R.layout.layout_orderlist_item, TaskViewHolder.class, mDatabase) {
-//
-//            @NonNull
-//            @Override
-//            public TaskViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//
-//                return null;
-//            }
-//
-//            @Override
-//            protected void onBindViewHolder(@NonNull TaskViewHolder holder, int position, @NonNull HashMap<String, Order> model) {
-//                holder.orderNum.setText(model.get("RKZDH").getOrder_number());
-//                holder.price.setText(Integer.toString((int) model.get("RKZDH").paidBasket.getTotal_price_basket()));
-//                holder.position.setText("1");
-//            }
-//        };
-//        recyclerView.setAdapter(adapter);
-
         mainActivity2_admin = (MainActivity2_Admin) requireActivity();
 
-        lvOrderList = v.findViewById(R.id.productsFromOrderList);
+        lvOrderList = v.findViewById(R.id.lvOrderList);
 
         Order[] orderArray = MainActivity2_Admin.orders.toArray(new Order[MainActivity2_Admin.orders.size()]);
 
-
-//        FirebaseListOptions<HashMap<String, Order>> options = new FirebaseListOptions.Builder<HashMap<String, Order>>()
-//                .setQuery(mDatabase, HashMap.class)
-//                .setLayout(R.layout.layout_orderlist_item)
-//                .build();
-//        mAdapter = new FirebaseListAdapter<HashMap<String, Order>>(options) {
-//            @Override
-//            protected void populateView(@NonNull View v, @NonNull HashMap<String, Order> model, int position) {
-//                //                OrderArrayAdapter adapter = new OrderArrayAdapter(getContext(), );
-//                tv = v.findViewById(R.id.etNumberOfOrder);
-//                tv.setText(model.get("JQQCF").getOrder_number());
-//            }
-//        };
 
 
 
@@ -98,24 +64,6 @@ public class OrderListFragment extends Fragment {
         });
 
         return v;
-    }
-
-
-
-
-    private static class TaskViewHolder extends RecyclerView.ViewHolder{
-
-        TextView orderNum;
-        TextView price;
-        TextView position;
-
-        public TaskViewHolder(@NonNull View itemView) {
-            super(itemView);
-            orderNum = (TextView) itemView.findViewById(R.id.etNumberOfOrder);
-            price = (TextView) itemView.findViewById(R.id.etPriceOfOrder);
-            position = (TextView) itemView.findViewById(R.id.etPositionOfOrderInList);
-        }
-
     }
 
 
