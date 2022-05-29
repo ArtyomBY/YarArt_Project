@@ -163,7 +163,7 @@ public class BasketFragment extends Fragment {
                     for (int i = 0; i < basketList.size(); i++) {
                         MainActivity.productsFromBasket.add(basketList.get(i));
                     }
-                    MainActivity.userOrder = new Order("Не выдан", Integer.toString(MainActivity.numberOfOrder), new Basket(MainActivity.productsFromBasket, MainActivity.total_price, true));
+                    MainActivity.userOrder = new Order("Не выдан", getNumberOfOrder(), new Basket(MainActivity.productsFromBasket, MainActivity.total_price, true));
                     MainActivity.orders.add(MainActivity.userOrder);
                     mainActivity.replaceFragment(new OrderFragment(MainActivity.userOrder));
                 } else
