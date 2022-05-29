@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.MainActivity2_Admin;
 import com.yarart.samsung_project.R;
@@ -29,6 +31,8 @@ import java.util.Random;
 
 public class OrderFragment extends Fragment {
 
+    DatabaseReference mDatabase;
+
     ArrayList<Product> productsFromOrder = new ArrayList<>();
     ListView lv_order;
     TextView tvOrderStatus, tvTotalPriceOrder, tvNumberOfOrder;
@@ -41,6 +45,9 @@ public class OrderFragment extends Fragment {
             this.productsFromOrder = order.paidBasket.getProductsFromBasket();
             this.order = order;
             MainActivity.userOrder = order;
+            mDatabase = FirebaseDatabase.getInstance().getReference("Orders").child(order.getOrder_number());
+            mDatabase.setValue(order);
+
         }
     }
 
@@ -63,8 +70,14 @@ public class OrderFragment extends Fragment {
         OrderFragment.ProductOrderAdapter adapter = new OrderFragment.ProductOrderAdapter(getContext(), productsFromOrder.toArray(products));
         lv_order.setAdapter(adapter);
         tvTotalPriceOrder.setText(Double.toString(order.paidBasket.getTotal_price_basket()));
+<<<<<<< HEAD
         tvOrderStatus.setText(order.order_status);
         tvNumberOfOrder.setText(order.order_number);
+=======
+        tvOrderStatus.setText(order.getOrder_status());
+        tvNumberOfOrder.setText(order.getOrder_number());
+        MainActivity.orders.add(order);
+>>>>>>> 09c67abe1db4c29e4d6b507eaeee4e2331f197c6
         sendNoticeToBuyerButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

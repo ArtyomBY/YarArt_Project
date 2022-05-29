@@ -135,7 +135,7 @@ public class ProfileFragment extends Fragment {
         goToUserOrderButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (MainActivity.userOrder.order_status!=null) {
+                if (MainActivity.userOrder.getOrder_status()!=null) {
                     MainActivity mainActivity = (MainActivity) requireActivity();
                     mainActivity.replaceFragment(new OrderFragment(MainActivity.userOrder));
                 }

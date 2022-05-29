@@ -16,11 +16,14 @@
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_product_catalog.xml" value="0.17831813576494426" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_registration_buyer.xml" value="0.33" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/activity_registration_user.xml" value="0.33" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_add_product.xml" value="0.17831813576494426" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_admin_catalog.xml" value="0.36666666666666664" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_basket.xml" value="0.358695652173913" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_catalog.xml" value="0.358695652173913" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_edit_product.xml" value="0.17831813576494426" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_edit_profile.xml" value="0.36666666666666664" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_order.xml" value="0.1816123188405797" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_order_list.xml" value="0.17831813576494426" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_product.xml" value="0.358695652173913" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_profile.xml" value="0.33" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/fragment_refill.xml" value="0.36666666666666664" />
@@ -28,7 +31,9 @@
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/layout_item_basket.xml" value="0.36666666666666664" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/layout_item_catalog.xml" value="0.33" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/layout_order_item.xml" value="0.36666666666666664" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/layout/layout_orderlist_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/menu/bottom_navigation_view.xml" value="0.36102564102564105" />
+        <entry key="..\:/Development/Android_Studio_projects/Project_Stolovaya/SamsungProject/app/src/main/res/menu/bottom_navigation_view_admin.xml" value="0.36102564102564105" />
         <entry key="..\:/IntelliJ Projects/Bykov_Artyom/SamsungProject_v2(19.05.22)/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/IntelliJ Projects/Bykov_Artyom/SamsungProject_v2(19.05.22)/app/src/main/res/layout/activity_main_activity2_admin.xml" value="0.36666666666666664" />
         <entry key="..\:/IntelliJ Projects/Bykov_Artyom/SamsungProject_v2(19.05.22)/app/src/main/res/layout/fragment_basket.xml" value="0.36666666666666664" />
