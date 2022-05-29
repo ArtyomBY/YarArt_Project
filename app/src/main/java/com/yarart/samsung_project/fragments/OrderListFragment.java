@@ -1,49 +1,32 @@
 package com.yarart.samsung_project.fragments;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.firebase.ui.database.FirebaseListAdapter;
-import com.firebase.ui.database.FirebaseListOptions;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
-import com.google.firebase.database.Query;
-import com.yarart.samsung_project.LoginActivity;
-import com.yarart.samsung_project.MainActivity;
 import com.yarart.samsung_project.MainActivity2_Admin;
 import com.yarart.samsung_project.R;
 import com.yarart.samsung_project.classes.Order;
-import com.yarart.samsung_project.classes.Product;
-import com.yarart.samsung_project.classes.UserProfile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 
 public class OrderListFragment extends Fragment {
@@ -51,14 +34,14 @@ public class OrderListFragment extends Fragment {
     DatabaseReference mDatabase;
 
 
-    List<Order> orders;
+    ArrayList<Order> orders;
     ListView lvOrderList;
 
     MainActivity2_Admin mainActivity2_admin;
 
-    public OrderListFragment(ArrayList<Order> Orders) {
+    public OrderListFragment(ArrayList<Order> orders) {
         // Required empty public constructor
-//        this.orders = Orders;
+        this.orders = orders;
         mDatabase = FirebaseDatabase.getInstance().getReference("Orders");
 //        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
 //            @Override
@@ -97,7 +80,7 @@ public class OrderListFragment extends Fragment {
                         for (HashMap.Entry<String, Order> pair: orders_list_fb.entrySet())
                         {
                             System.out.println(pair.getKey() + " " + pair.getValue());
-                            orders.add(pair.getValue());
+                            //orders.add(pair.getValue()); //nenenenen
                         }
 
                         // TODO
@@ -120,7 +103,7 @@ public class OrderListFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_order_list, container, false);
-        orders = new ArrayList<Order>();
+
 
 //        adapter = new FirebaseRecyclerAdapter<HashMap<String, Order>, TaskViewHolder>(HashMap.class, R.layout.layout_orderlist_item, TaskViewHolder.class, mDatabase) {
 //
