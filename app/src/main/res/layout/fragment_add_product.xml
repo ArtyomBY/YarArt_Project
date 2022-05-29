@@ -39,7 +39,8 @@
             android:id="@+id/saveProductChangesButtonAdd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="сохранить изменения"/>
+            android:hint="сохранить изменения"
+            android:backgroundTint="@color/green_app"/>
 
 
     </LinearLayout>

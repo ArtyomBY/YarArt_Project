@@ -132,7 +132,7 @@ public class BasketFragment extends Fragment {
 
     public void pay_for_the_shopping_cart(View view, Product[] products) {
 
-        if (MainActivity.userOrder.order_status == null) {
+        if (MainActivity.userOrder.getOrder_status() == null) {
             if (products.length != 0) {
                 if (cUser.getWallet() >= MainActivity.total_price) {
                     mDatabase.child(cUser.getId()).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
