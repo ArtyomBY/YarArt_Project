@@ -100,7 +100,7 @@ public class OrderFragment extends Fragment {
     public void deleteOrderFromOrderList(View view, Order order, ArrayList<Order> orders) {
         MainActivity.orders.remove(MainActivity.orders.indexOf(order));
         MainActivity2_Admin mainActivity2_admin = (MainActivity2_Admin) requireActivity();
-        mainActivity2_admin.replaceFragment(new OrderListFragment(orders));
+        mainActivity2_admin.replaceFragment(new OrderListFragment());
     }
 
 

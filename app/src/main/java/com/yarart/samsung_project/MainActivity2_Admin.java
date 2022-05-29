@@ -20,6 +20,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.yarart.samsung_project.classes.Basket;
 import com.yarart.samsung_project.classes.Buyer;
 import com.yarart.samsung_project.classes.Order;
@@ -32,6 +33,7 @@ import com.yarart.samsung_project.fragments.OrderListFragment;
 import com.yarart.samsung_project.fragments.ProfileFragment;
 import com.yarart.samsung_project.fragments.RefillFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -39,6 +41,7 @@ public class MainActivity2_Admin extends AppCompatActivity {
 
     public BottomNavigationView bottomNavigationView;
     public static boolean isActivityCreated = false;
+    public static ArrayList<Order> orders = new ArrayList<>();
 
     public DatabaseReference mDatabase;
 
@@ -56,6 +59,30 @@ public class MainActivity2_Admin extends AppCompatActivity {
 
     public void init() {
         //Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
+
+        mDatabase = FirebaseDatabase.getInstance().getReference("Orders");
+        mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DataSnapshot document = task.getResult();
+                    if (document.exists()) {
+                        HashMap<String, Order> orders_list_fb = document.getValue(new GenericTypeIndicator<HashMap<String, Order>>() {});
+                        for (HashMap.Entry<String, Order> pair: orders_list_fb.entrySet())
+                        {
+                            System.out.println(pair.getKey() + " " + pair.getValue());
+                            orders.add(pair.getValue());
+                        }
+                        Log.d("GET_ORDERS", "onComplete: успешно");
+                    } else {
+                        Log.d("GET_ORDERS", "onComplete: безуспешно");
+                    }
+                } else {
+                    Log.d("GET_ORDERS", "get failed with ", task.getException());
+                }
+            }
+        });
+
         if (MainActivity.products.size()==0) {
             MainActivity.products.add(new Product("Устрица", 10, "Пирожок с маком", true, R.drawable.ustrica));
             MainActivity.products.add(new Product("Питца", 35, "Шедевр кулинарии", true, R.drawable.pizza));
@@ -70,8 +97,6 @@ public class MainActivity2_Admin extends AppCompatActivity {
         Bundle args = getIntent().getExtras();
         UserProfile user = (UserProfile) args.get("User");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference("Users");
-
         bottomNavigationView = findViewById(R.id.bottomNavigationViewAdmin);
         bottomNavigationView.setSelectedItemId(R.id.refill_menu);
         replaceFragment(new RefillFragment());
@@ -85,7 +110,7 @@ public class MainActivity2_Admin extends AppCompatActivity {
                     break;
 
                 case R.id.order_list_menu:
-                    replaceFragment(new OrderListFragment(orders));
+                    replaceFragment(new OrderListFragment());
                     bottomNavigationView.getMenu().findItem(R.id.order_list_menu).setChecked(true);
                     break;
 
