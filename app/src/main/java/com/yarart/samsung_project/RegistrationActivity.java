@@ -67,10 +67,8 @@ public class RegistrationActivity extends AppCompatActivity {
 
             if (checkBoxBuyer.isChecked()){
                 PROFILE_TYPE = "Buyer";
-//                myDatabase = FirebaseDatabase.getInstance().getReference("Users").child(PROFILE_TYPE);
             } else if (checkBoxAdmin.isChecked()) {
                 PROFILE_TYPE = "Admin";
-//                myDatabase = FirebaseDatabase.getInstance().getReference("Users").child(PROFILE_TYPE);
             } else {
                 Toast.makeText(this, "ErrorCheck", Toast.LENGTH_SHORT).show();
             }
@@ -80,7 +78,6 @@ public class RegistrationActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-//                                HashMap<String, UserProfile> usersMap = new HashMap<>();
                                 String uid = myAuth.getCurrentUser().getUid();
 
                                 String id = uid;
@@ -88,7 +85,6 @@ public class RegistrationActivity extends AppCompatActivity {
                                 String secondName = editTextSecondName.getText().toString();
                                 String email = editTextEmail.getText().toString();
                                 UserProfile newUser = new UserProfile(id, firstName, secondName, email, PROFILE_TYPE);
-//                                usersMap.put(uid, newUser);
 
                                 myDatabase.child(uid).setValue(newUser);
 
@@ -96,7 +92,6 @@ public class RegistrationActivity extends AppCompatActivity {
                                 Toast.makeText(RegistrationActivity.this, "Вы успешно создали аккаунт", Toast.LENGTH_SHORT).show();
 
                                 Intent i = new Intent(RegistrationActivity.this, LoginActivity.class);
-//                                i.putExtra("User", newUser);
                                 startActivity(i);
 
                             } else

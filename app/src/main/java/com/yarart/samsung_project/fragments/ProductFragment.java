@@ -67,13 +67,9 @@ public class ProductFragment extends Fragment {
     }
 
     public void put_in_basket(View view) {
-        //Basket basket = new Basket()
         MainActivity.total_price += product.getPrice();
         BasketFragment.basketList.add(product);
         mainActivity.replaceFragment(new BasketFragment());
-//        Intent i = new Intent(view.getContext(), BasketActivity.class);
-//        i.putExtra("dishPrice", a);
-//        startActivity(i);
         mainActivity.bottomNavigationView.getMenu().findItem(R.id.basket_menu).setChecked(true);
         Toast.makeText(getContext(), "Товар добавлен в корзину!", Toast.LENGTH_SHORT).show();
     }

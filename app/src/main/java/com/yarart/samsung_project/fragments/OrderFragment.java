@@ -129,14 +129,6 @@ public class OrderFragment extends Fragment {
             if (product.getDish().equals("Пирог с картошкой"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.kartoshka);
 
-//        CheckBox ch = (CheckBox) convertView.findViewById(R.id.checkbox);
-//        ch.setChecked(product.like);
-//        ch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                product.like = ((CheckBox) v).isChecked();
-//            }
-//        });
             return convertView;
         }
     }

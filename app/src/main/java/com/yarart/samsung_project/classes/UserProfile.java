@@ -6,10 +6,7 @@ import java.io.Serializable;
 
 public class UserProfile implements Serializable {
 
-    //ImageView profile_picture;
     private String id;
-//    private String user_id;
-//    private static long inc = 0;
     private String firstName;
     private String secondName;
     private String email;
@@ -23,14 +20,11 @@ public class UserProfile implements Serializable {
     public UserProfile(String id, String firstName, String secondName, String email, String user_status) {
 
         this.id = id;
-//        inc++;
-//        this.id = Long.toString(inc);
         this.firstName = firstName;
         this.secondName = secondName;
         this.email = email;
         this.user_status = user_status;
         this.wallet = 0.0;
-//        this.wallet = new Wallet(id);
     }
 
     public void change_information() {

@@ -72,7 +72,6 @@ public class RefillFragment extends Fragment {
     public void refillTheWalletOfBuyer(View view) {
         buyerId = etBuyerId.getText().toString();
         sumOfCashToRefill = Integer.parseInt(etSumOfCashToRefill.getText().toString());
-//        MainActivity2_Admin.refillTheWallet(buyerId, sumOfCashToRefill, getContext());
 
         mDatabase.child(buyerId).get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override

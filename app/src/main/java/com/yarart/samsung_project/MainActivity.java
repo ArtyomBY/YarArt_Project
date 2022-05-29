@@ -7,11 +7,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.View;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.yarart.samsung_project.classes.Basket;
-import com.yarart.samsung_project.classes.Buyer;
 import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
 import com.yarart.samsung_project.classes.UserProfile;
@@ -29,7 +27,6 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<Order> orders = new ArrayList<>();
     public static ArrayList<Product> productsFromBasket = new ArrayList<>();
     public static Order userOrder = new Order();
-    public static int userImageBitmap = 0;
     public static boolean isActivityCreated = false;
     public static int numberOfOrder = 0;
 

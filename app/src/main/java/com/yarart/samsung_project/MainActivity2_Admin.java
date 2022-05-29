@@ -1,18 +1,13 @@
 package com.yarart.samsung_project;
 
-import static com.yarart.samsung_project.MainActivity.orders;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,21 +17,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.GenericTypeIndicator;
 import com.yarart.samsung_project.classes.Basket;
-import com.yarart.samsung_project.classes.Buyer;
 import com.yarart.samsung_project.classes.Order;
 import com.yarart.samsung_project.classes.Product;
 import com.yarart.samsung_project.classes.UserProfile;
 import com.yarart.samsung_project.fragments.AdminCatalogFragment;
-import com.yarart.samsung_project.fragments.BasketFragment;
-import com.yarart.samsung_project.fragments.CatalogFragment;
 import com.yarart.samsung_project.fragments.OrderListFragment;
-import com.yarart.samsung_project.fragments.OrderListFragmentTwo;
 import com.yarart.samsung_project.fragments.ProfileFragment;
 import com.yarart.samsung_project.fragments.RefillFragment;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 
 public class MainActivity2_Admin extends AppCompatActivity {
 
@@ -59,7 +49,6 @@ public class MainActivity2_Admin extends AppCompatActivity {
 
 
     public void init() {
-        //Buyer buyer = new Buyer("Быков Артем Ильич", 10, "МБОУ сош №35", "г. Иваново, Ивановская обл.");
 
         mDatabase = FirebaseDatabase.getInstance().getReference("Orders");
         mDatabase.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

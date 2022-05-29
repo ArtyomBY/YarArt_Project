@@ -72,11 +72,7 @@ public class AdminCatalogFragment extends Fragment {
         TextView tv = view.findViewById(R.id.textView);
         String str = tv.getText().toString();
         MainActivity2_Admin mainActivity2_admin = (MainActivity2_Admin) requireActivity();
-//        deleteFromBasket.setVisibility(View.GONE);
         mainActivity2_admin.replaceFragment(new AdminProductFragment(product));
-//        Intent i = new Intent(MainActivity_ProductCatalog.this, ProductActivity.class);
-//        i.putExtra("nd", str);
-//        startActivity(i);
     }
 
 

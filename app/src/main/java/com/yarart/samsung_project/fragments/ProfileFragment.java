@@ -69,7 +69,6 @@ public class ProfileFragment extends Fragment {
     View v;
     DatabaseReference mDatabase;
 
-    static int imageResource;
     ImageView profileImage;
 
     androidx.constraintlayout.widget.ConstraintLayout constraintLayout;
@@ -101,12 +100,6 @@ public class ProfileFragment extends Fragment {
 
         profileImage = v.findViewById(R.id.profileImage);
 
-//        InputStream inputStream = requireActivity().getApplicationContext().getAssets().open(){
-//            Drawable d = Drawable.createFromStream(inputStream, null);
-//            profileImage.setImageDrawable(d);
-//        }
-
-//        profileImage.setImageResource(d);
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

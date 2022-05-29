@@ -4,10 +4,8 @@ import android.graphics.drawable.Drawable;
 
 public class Product {
 
-    //private int dish_id;
     private String dish = "";
     private int price = 0;
-    //boolean like = false;
     private String description;
     Boolean status; // 0 - нет в наличии 1 - есть в наличии
     private int dishResource;
@@ -22,15 +20,6 @@ public class Product {
         this.status = status;
         this.dishResource = dishResource;
     }
-
-
-
-//    public void add_to_basket(View view){
-//
-//        Intent i = new Intent(this, BasketActivity.class);
-//        startActivity(i);
-//
-//    }
 
     public int getDishResource() {
         return dishResource;

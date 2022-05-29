@@ -125,11 +125,7 @@ public class BasketFragment extends Fragment {
         TextView tv = view.findViewById(R.id.textView);
         String str = tv.getText().toString();
         MainActivity mainActivity = (MainActivity) requireActivity();
-//        deleteFromBasket.setVisibility(View.VISIBLE);
         mainActivity.replaceFragment(new ProductFragment(product));
-//        Intent i = new Intent(MainActivity_ProductCatalog.this, ProductActivity.class);
-//        i.putExtra("nd", str);
-//        startActivity(i);
     }
 
 
@@ -215,14 +211,6 @@ public class BasketFragment extends Fragment {
             if (product.getDish().equals("Пирог с картошкой"))
                 ((ImageView) convertView.findViewById(R.id.imageView)).setImageResource(R.drawable.kartoshka);
 
-//        CheckBox ch = (CheckBox) convertView.findViewById(R.id.checkbox);
-//        ch.setChecked(product.like);
-//        ch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                product.like = ((CheckBox) v).isChecked();
-//            }
-//        });
             return convertView;
         }
     }

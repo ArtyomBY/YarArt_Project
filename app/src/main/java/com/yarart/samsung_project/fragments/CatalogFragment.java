@@ -68,11 +68,7 @@ public class CatalogFragment extends Fragment {
         TextView tv = view.findViewById(R.id.textView);
         String str = tv.getText().toString();
         MainActivity mainActivity = (MainActivity) requireActivity();
-//        deleteFromBasket.setVisibility(View.GONE);
         mainActivity.replaceFragment(new ProductFragment(product));
-//        Intent i = new Intent(MainActivity_ProductCatalog.this, ProductActivity.class);
-//        i.putExtra("nd", str);
-//        startActivity(i);
     }
 
 
